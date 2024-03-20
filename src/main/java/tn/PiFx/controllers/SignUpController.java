@@ -15,7 +15,7 @@ public class SignUpController {
         String query = "INSERT INTO users (cin, num_tel, nom, prenom, adresse, mdp, profession, roles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pst = con.prepareStatement(query)) {
-            String hashedPassword = BCrypt.hashpw(user.getMdp(), BCrypt.gensalt());
+            String hashedPassword = BCrypt.hashpw(user.getMdp(), BCrypt.gensalt());//Hashing Password
             pst.setInt(1, user.getCin());
             pst.setInt(2, user.getNum_tel());
             pst.setString(3, user.getNom());
