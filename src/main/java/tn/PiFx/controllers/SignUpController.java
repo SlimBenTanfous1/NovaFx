@@ -6,6 +6,8 @@ import tn.PiFx.utils.DataBase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 public class SignUpController {
     public boolean signUpUser(User user) {
@@ -13,12 +15,13 @@ public class SignUpController {
         String query = "INSERT INTO users (cin, num_tel, nom, prenom, adresse, mdp, profession, roles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pst = con.prepareStatement(query)) {
+            String hashedPassword = BCrypt.hashpw(user.getMdp(), BCrypt.gensalt());
             pst.setInt(1, user.getCin());
             pst.setInt(2, user.getNum_tel());
             pst.setString(3, user.getNom());
             pst.setString(4, user.getPrenom());
             pst.setString(5, user.getAdresse());
-            pst.setString(6, user.getMdp()); // Consider hashing the password here
+            pst.setString(6, hashedPassword);
             pst.setString(7, user.getProfession());
             pst.setString(8, user.getRoles());
 
