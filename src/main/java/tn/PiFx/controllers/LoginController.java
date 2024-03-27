@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class LoginController {
     public boolean authenticateUser(String username, String password) {
         Connection con = DataBase.getInstance().getConx();
-        String query = "SELECT mdp FROM users WHERE nom = ?"; // Assuming 'nom' is the username field
+        String query = "SELECT password FROM users WHERE nom = ?"; // Assuming 'nom' is the username field
 
         try (PreparedStatement pst = con.prepareStatement(query)) {
             pst.setString(1, username);

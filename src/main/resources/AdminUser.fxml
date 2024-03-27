@@ -82,6 +82,7 @@
                         </GridPane>
                         <Button layoutX="671.0" layoutY="276.0" mnemonicParsing="false" onAction="#AjouterButton" prefHeight="38.0" prefWidth="116.0" text="Ajouter" />
                         <Button layoutX="817.0" layoutY="275.0" mnemonicParsing="false" onAction="#ModifierButton" prefHeight="40.0" prefWidth="116.0" text="Modifier" />
+                        <TextField fx:id="uinfolabel" layoutX="61.0" layoutY="34.0" prefHeight="26.0" prefWidth="420.0" />
                      </children>
                   </AnchorPane>
             </content>

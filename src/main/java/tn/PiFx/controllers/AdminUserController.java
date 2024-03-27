@@ -23,6 +23,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import java.sql.Connection;
+import tn.PiFx.utils.DataBase;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class AdminUserController {
     @FXML
     private TextField adresseTF;
@@ -47,14 +53,57 @@ public class AdminUserController {
 
     @FXML
     private ComboBox<?> roleCOMBOBOX;
+    @FXML
+    private TextField uinfolabel;
+
+    private Connection conx;
+
+    private boolean emailExists(String email) throws SQLException {
+        conx = DataBase.getInstance().getConx();
+        String query = "SELECT * FROM `user` WHERE email=?";
+        PreparedStatement statement = conx.prepareStatement(query);
+        statement.setString(1, email);
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet.next();
+    }
 
     @FXML
-    void AjouterButton(ActionEvent event) {
+    void AjouterButton(ActionEvent event) throws SQLException{
+
+        int CIN = Integer.parseInt(cinTF.getText());
+        String NOM = nomTF.getText();
+        String PRENOM = prenomTF.getText();
+        String EMAIL = emailTF.getText();
+        String ADRESSE = adresseTF.getText();
+        String MDP = mdpTF.getText();
+        int NUMTEL = Integer.parseInt(numtelTF.getText());
+        String ROLE = (String) roleCOMBOBOX.getValue();
+        //String IMAGE = pdptf.getText();
+        if (EMAIL.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com)$")) {
+            if (numtelTF.getText().matches("\\d{8}")) {
+                if (!emailExists(EMAIL)) {
+                    UserS.Add(new Utilisateur(0,CIN, NOM, PRENOM, EMAIL, MDP, NUMTEL, ROLE));
+                    uinfolabel.setText("Ajout Effectué");
+                } else {
+                    uinfolabel.setText("Email existe déja");
+                }
+            } else {
+                uinfolabel.setText("N° Télèphone est invalide");
+            }
+        } else {
+            uinfolabel.setText("Email est invalide");
+        }
+
 
     }
 
     @FXML
-    void ModifierButton(ActionEvent event) {
+    void ModifierButton(ActionEvent event)  {
 
     }
+
+
+
+
+
 }
