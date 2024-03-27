@@ -2,51 +2,24 @@ package tn.PiFx.entities;
 
 public class User {
     int cin,num_tel;
-    String nom,prenom,adresse,mdp,profession,roles;
+    String nom,prenom,adresse,password,profession,roles,reset_token,reset_token_expiration;
 
     //Constructeur Vide
     public User(){}
 
     //Constructeur Paramétré
-    public User(int cin, int num_tel, String nom, String prenom, String adresse, String mdp, String profession, String roles) {
+    public User(int cin, int num_tel, String nom, String prenom, String adresse, String password, String profession, String roles, String reset_token, String reset_token_expiration) {
         this.cin = cin;
         this.num_tel = num_tel;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
-        this.mdp = mdp;
+        this.password = password;
         this.profession = profession;
         this.roles = roles;
+        this.reset_token = reset_token;
+        this.reset_token_expiration = reset_token_expiration;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -91,12 +64,12 @@ public class User {
         this.adresse = adresse;
     }
 
-    public String getMdp() {
-        return mdp;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getProfession() {
@@ -114,4 +87,20 @@ public class User {
     public void setRoles(String roles) {
         this.roles = roles;
     }
+    public String getReset_token() {
+        return reset_token;
+    }
+
+    public void setReset_token(String reset_token) {
+        this.reset_token = reset_token;
+    }
+
+    public String getReset_token_expiration() {
+        return reset_token_expiration;
+    }
+
+    public void setReset_token_expiration(String reset_token_expiration) {
+        this.reset_token_expiration = reset_token_expiration;
+    }
+
 }
