@@ -20,6 +20,11 @@
             <version>8.0.33</version>
         </dependency>
         <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>10.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>17.0.6</version>
@@ -70,7 +75,7 @@
                     <artifactId>javafx-maven-plugin</artifactId>
                     <version>0.0.8</version>
                     <configuration>
-                        <mainClass>tn.Elzigi.MainFx</mainClass>
+                        <mainClass>tn.PiFx.MainFx</mainClass>
                     </configuration>
                 </plugin>
             </plugins>

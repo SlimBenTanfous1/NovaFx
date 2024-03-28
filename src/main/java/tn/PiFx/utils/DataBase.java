@@ -7,19 +7,11 @@ import java.sql.SQLException;
 
 public class DataBase {
 
-    private final String URL ="jdbc:mysql://localhost:3306/NovaAssurancefx";
+    private static DataBase instance ;
+    private final String URL ="jdbc:mysql://localhost:3306/basenova_3" ;
     private final String USERNAME ="root";
     private final String PWD ="";
-    private Connection conx;
-
-
-    public static DataBase instance;
-    public static DataBase getInstance() {
-        if (instance == null) {
-            instance = new DataBase();
-        }
-        return instance;
-    }
+    Connection conx;
 
     private DataBase(){
         try {
@@ -28,6 +20,12 @@ public class DataBase {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    public static DataBase getInstance() {
+        if (instance == null) {
+            instance = new DataBase();
+        }
+        return instance;
     }
 
     public Connection getConx() {

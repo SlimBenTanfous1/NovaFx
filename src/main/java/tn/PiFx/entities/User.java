@@ -22,7 +22,7 @@ public class User {
         this.reset_token_expiration = reset_token_expiration;
     }
 
-    public User(int cin, String nom, String prenom, String email, String adresse,int num_tel, String password, String roles) {
+    public User(int cin, String nom, String prenom, String email, String adresse,int num_tel, String password, String roles,String profession) {
         this.cin = cin;
         this.num_tel = num_tel;
         this.nom = nom;
@@ -31,6 +31,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.roles = roles;
+        this.profession = profession;
     }
 
     //Getters & Setters

@@ -16,7 +16,7 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
     @Override
     public void Add(User user) {
-        String qry = "INSERT INTO `user`(`nom`, `prenom`, `adresse`, `email`, `num_tel`, `password`, `cin`, `role`) VALUES (?,?,?,?,?,?,?,?)";
+        String qry = "INSERT INTO `user`(`nom`, `prenom`, `adresse`, `email`, `num_tel`, `password`, `cin`, `role`,`profession`) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement stm = conx.prepareStatement(qry);
@@ -28,7 +28,7 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             stm.setString(6, user.getPassword());
             stm.setInt(7, user.getCin());
             stm.setString(8, user.getRoles());
-
+            stm.setString(9,user.getProfession());
             stm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

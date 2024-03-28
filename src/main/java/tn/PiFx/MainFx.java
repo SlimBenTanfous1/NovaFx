@@ -14,10 +14,12 @@ public class MainFx extends Application{
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
         try {
+            System.out.println("before");
             Parent root = loader.load();
+            System.out.println("after");
             Scene scene =new Scene(root);
             primaryStage.setTitle("Test-Nova");
             primaryStage.setScene(scene);
@@ -25,8 +27,6 @@ public class MainFx extends Application{
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
     }
-
     }
 
