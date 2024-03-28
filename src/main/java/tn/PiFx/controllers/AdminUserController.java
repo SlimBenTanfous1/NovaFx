@@ -1,6 +1,5 @@
 package tn.PiFx.controllers;
 
-import javafx.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -24,6 +23,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.sql.Connection;
+import tn.PiFx.services.ServiceUtilisateurs;
+
+import tn.PiFx.entities.User;
 import tn.PiFx.utils.DataBase;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,6 +59,8 @@ public class AdminUserController {
     private TextField uinfolabel;
 
     private Connection conx;
+    private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
+
 
     private boolean emailExists(String email) throws SQLException {
         conx = DataBase.getInstance().getConx();
@@ -82,7 +86,7 @@ public class AdminUserController {
         if (EMAIL.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com)$")) {
             if (numtelTF.getText().matches("\\d{8}")) {
                 if (!emailExists(EMAIL)) {
-                    UserS.Add(new Utilisateur(0,CIN, NOM, PRENOM, EMAIL, MDP, NUMTEL, ROLE));
+                    UserS.Add(new User(CIN,NOM,PRENOM,EMAIL,ADRESSE,NUMTEL,MDP,ROLE));
                     uinfolabel.setText("Ajout Effectué");
                 } else {
                     uinfolabel.setText("Email existe déja");

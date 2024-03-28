@@ -2,17 +2,18 @@ package tn.PiFx.entities;
 
 public class User {
     int cin,num_tel;
-    String nom,prenom,adresse,password,profession,roles,reset_token,reset_token_expiration;
+    String nom,prenom,adresse,email,password,profession,roles,reset_token,reset_token_expiration;
 
     //Constructeur Vide
     public User(){}
 
     //Constructeur Paramétré
-    public User(int cin, int num_tel, String nom, String prenom, String adresse, String password, String profession, String roles, String reset_token, String reset_token_expiration) {
+    public User(int cin,String nom, String prenom,String email, String adresse,int num_tel, String password, String profession, String roles, String reset_token, String reset_token_expiration) {
         this.cin = cin;
         this.num_tel = num_tel;
         this.nom = nom;
         this.prenom = prenom;
+        this.email = email;
         this.adresse = adresse;
         this.password = password;
         this.profession = profession;
@@ -21,7 +22,16 @@ public class User {
         this.reset_token_expiration = reset_token_expiration;
     }
 
-
+    public User(int cin, String nom, String prenom, String email, String adresse,int num_tel, String password, String roles) {
+        this.cin = cin;
+        this.num_tel = num_tel;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
 
     //Getters & Setters
     public int getCin() {
@@ -54,6 +64,14 @@ public class User {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAdresse() {
