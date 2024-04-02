@@ -155,10 +155,29 @@ public class AdminUserController {
 
     }
 
+    /*
     @FXML
     void ModifierButton(ActionEvent event)  {
+        int CIN = Integer.parseInt(.getText());
+        String NOM = nomtf.getText();
+        String PRENOM = prenomtf.getText();
+        String EMAIL = emailtf.getText();
+        String MDP = mdptf.getText();
+        int NUMTEL = Integer.parseInt(numteltf.getText());
+        String ROLE = (String) rolecb.getValue();
+        String IMAGE = pdptf.getText();
+        if (EMAIL.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com|outlook\\.(com|tn|fr)|yahoo\\.(com|tn|fr))$")) {
+            if (numteltf.getText().matches("\\d{8}")) {
+                UserS.Update(new Utilisateur(ID, NOM, PRENOM, EMAIL, MDP, NUMTEL, ROLE, IMAGE));
+                uinfolabel.setText("Modificatiion à été effectué avec sucées!");
+            } else {
+                uinfolabel.setText("N° Telephone est invalide");
+            }
+        } else {
+            uinfolabel.setText("Email est invalide");
+        }
 
-    }
+    }*/
 
 
 
