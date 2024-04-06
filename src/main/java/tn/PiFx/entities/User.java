@@ -122,4 +122,10 @@ public class User {
         this.reset_token_expiration = reset_token_expiration;
     }
 
+    public int getId() {
+        return 0;
+    }
+
+    public void setId(int userId) {
+    }
 }

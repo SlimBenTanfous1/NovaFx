@@ -8,7 +8,6 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -86,8 +85,8 @@
                            </children>
                         </GridPane>
                         <Button layoutX="671.0" layoutY="276.0" mnemonicParsing="false" onAction="#AjouterButton" prefHeight="38.0" prefWidth="116.0" text="Ajouter" />
-                        <Button layoutX="817.0" layoutY="275.0" mnemonicParsing="false" onAction="#ModifierButton" prefHeight="40.0" prefWidth="116.0" text="Modifier" />
                         <TextField fx:id="uinfolabel" layoutX="61.0" layoutY="34.0" prefHeight="26.0" prefWidth="420.0" />
+                        <Button layoutX="799.0" layoutY="276.0" mnemonicParsing="false" onAction="#ModifierButton" prefHeight="38.0" prefWidth="116.0" text="Ajouter" />
                      </children>
                   </AnchorPane>
             </content>
@@ -96,21 +95,23 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane prefHeight="600.0" prefWidth="1145.0">
+                        <ScrollPane layoutY="57.0" prefHeight="543.0" prefWidth="1145.0">
                            <content>
-                              <HBox prefHeight="52.0" prefWidth="279.0">
-                                 <children>
-                                    <Label prefHeight="52.0" prefWidth="88.0" text="Trier par :">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="76.0" text="Nom" />
-                                    <Button mnemonicParsing="false" prefHeight="59.0" prefWidth="92.0" text="Email" />
-                                 </children>
-                              </HBox>
+                              <GridPane fx:id="userContainer" prefHeight="0.0" prefWidth="0.0">
+                              </GridPane>
                            </content>
                         </ScrollPane>
+                        <HBox prefHeight="52.0" prefWidth="279.0">
+                           <children>
+                              <Label prefHeight="52.0" prefWidth="88.0" text="Trier par :">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="76.0" text="Nom" />
+                              <Button mnemonicParsing="false" prefHeight="59.0" prefWidth="92.0" text="Email" />
+                           </children>
+                        </HBox>
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -141,9 +142,7 @@
                </font>
             </Text>
             <ImageView fitHeight="58.0" fitWidth="160.0" layoutX="24.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../khedma%20Esprit/Logo%20Pi%20Dev/logon.png" />
-               </image>
+
             </ImageView>
          </children>
       </Pane>
