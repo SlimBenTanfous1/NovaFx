@@ -47,6 +47,10 @@ public class User {
         this.roles = roles;
     }
 
+    public User(String nom, String prenom, String adresse, String email, int numtel, String mdp, String role, String profession) {
+
+    }
+
     //Getters & Setters
     public int getCin() {
         return cin;

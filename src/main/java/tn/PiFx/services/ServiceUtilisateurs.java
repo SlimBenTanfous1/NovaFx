@@ -58,6 +58,7 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         try (Statement stmt = conx.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 User user = new User(
+                        rs.getInt("id"),
                         rs.getInt("cin"),
                         rs.getString("nom"),
                         rs.getString("prenom"),
@@ -99,9 +100,10 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        String query = "UPDATE user SET nom=?, prenom=?, adresse=?, email=?, num_tel=?, profession=?, password=?, cin=?, role=? WHERE id=?";
 
         try {
+            String query = "UPDATE user SET nom=?, prenom=?, adresse=?, email=?, num_tel=?, profession=?, password=?, cin=?, role=? WHERE id=?";
+
             connection = DataBase.getInstance().getConx();
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(query);
@@ -150,8 +152,6 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
 
 
-
-
     @Override
     public void Delete(User user) {
 
@@ -162,29 +162,5 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
     }
 
-    public User findById(int userId) {
-        User user = null;
-        String query = "SELECT * FROM user WHERE id = ?";
-        try {
-            PreparedStatement statement = conx.prepareStatement(query);
-            statement.setInt(1, userId);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                int cin = resultSet.getInt("cin");
-                String nom = resultSet.getString("nom");
-                String prenom = resultSet.getString("prenom");
-                String email = resultSet.getString("email");
-                String adresse = resultSet.getString("adresse");
-                int numtel = resultSet.getInt("num_tel");
-                String mdp = resultSet.getString("password");
-                String role = resultSet.getString("role");
-                String profession = resultSet.getString("profession");
 
-                user = new User(cin, nom, prenom, email, adresse, numtel, mdp, role, profession);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Or handle the exception as needed
-        }
-        return user;
-    }
 }

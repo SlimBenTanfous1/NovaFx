@@ -52,6 +52,6 @@
       </GridPane>
       <Button layoutX="40.0" layoutY="89.0" mnemonicParsing="false" onAction="#ModifierButtonUser" text="Modifier" />
       <Button layoutX="34.0" layoutY="153.0" mnemonicParsing="false" onAction="#SupprimerButtonUser" text="Supprimer" />
-      <TextField fx:id="idModifTF" disable="true" layoutX="16.0" layoutY="15.0" opacity="0.0" prefHeight="26.0" prefWidth="36.0" />
+      <TextField fx:id="idModifTF" disable="true" layoutX="16.0" layoutY="15.0" prefHeight="26.0" prefWidth="36.0" />
    </children>
 </Pane>

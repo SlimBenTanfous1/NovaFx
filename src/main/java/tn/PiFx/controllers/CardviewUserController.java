@@ -123,17 +123,16 @@ public class CardviewUserController implements Initializable {
             }
 
             else {
-                UserS.Update(new User(id,cin, nom, prenom, email, adresse, numtel, mdp, role, profession));
+                UserS.Update(new User(id,cin,nom, prenom, adresse, email, numtel, mdp, role, profession));
 
-                // User userToUpdate = new User(id,cin, nom, prenom, email, adresse, numtel, mdp, role, profession);
                 System.out.println("test1");
-               // updateUserInDatabase(userToUpdate);
                 adminUserController.populateEditForm(this.currentUser);
             }
 
         } catch (NumberFormatException e) {
             showAlert("Validation Error", "Please enter valid numbers for CIN and Telephone.", Alert.AlertType.ERROR);
         }
+
 
     }
 
