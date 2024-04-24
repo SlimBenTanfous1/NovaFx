@@ -1,7 +1,7 @@
 package tn.PiFx.entities;
 
 public class User {
-    int cin,num_tel;
+    int cin,num_tel,id;
     String nom,prenom,adresse,email,password,profession,roles,reset_token,reset_token_expiration;
 
     //Constructeur Vide
@@ -32,6 +32,19 @@ public class User {
         this.password = password;
         this.roles = roles;
         this.profession = profession;
+    }
+
+    public User(int id,int cin,String nom, String prenom, String email,String adresse,int num_tel, String password, String profession, String roles) {
+        this.cin = cin;
+        this.num_tel = num_tel;
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.password = password;
+        this.profession = profession;
+        this.roles = roles;
     }
 
     //Getters & Setters
@@ -123,9 +136,10 @@ public class User {
     }
 
     public int getId() {
-        return 0;
+        return id;
     }
 
-    public void setId(int userId) {
+    public void setId(int id) {
+        this.id = id;
     }
 }

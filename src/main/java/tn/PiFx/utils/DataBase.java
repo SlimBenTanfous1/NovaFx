@@ -15,9 +15,9 @@ public class DataBase {
 
     private DataBase(){
         try {
-            conx = DriverManager.getConnection(URL,USERNAME,PWD);
-            System.out.println("Connexion établie!");
-        } catch (SQLException e) {
+            conx = DriverManager.getConnection(URL, USERNAME, PWD);
+            System.out.println("Connextion établie!");
+        } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
     }

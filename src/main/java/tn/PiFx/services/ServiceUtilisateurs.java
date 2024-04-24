@@ -1,7 +1,5 @@
 package tn.PiFx.services;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import tn.PiFx.Interfaces.IUtilisateur;
 import tn.PiFx.entities.User;
 import tn.PiFx.utils.DataBase;
@@ -15,11 +13,11 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
 
     @Override
-    public void Add(User user) {
+    public boolean Add(User user) {
         String qry = "INSERT INTO `user`(`nom`, `prenom`, `adresse`, `email`, `num_tel`, `password`, `cin`, `role`,`profession`) VALUES (?,?,?,?,?,?,?,?,?)";
+        boolean isAdded = false;
 
-        try {
-            PreparedStatement stm = conx.prepareStatement(qry);
+        try (PreparedStatement stm = conx.prepareStatement(qry, Statement.RETURN_GENERATED_KEYS)) {
             stm.setString(1, user.getNom());
             stm.setString(2, user.getPrenom());
             stm.setString(3, user.getAdresse());
@@ -28,12 +26,25 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             stm.setString(6, user.getPassword());
             stm.setInt(7, user.getCin());
             stm.setString(8, user.getRoles());
-            stm.setString(9,user.getProfession());
-            stm.executeUpdate();
+            stm.setString(9, user.getProfession());
+
+            int affectedRows = stm.executeUpdate();
+            if (affectedRows > 0) {
+                // Retrieve the auto-generated id
+                try (ResultSet generatedKeys = stm.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        user.setId(generatedKeys.getInt(1));  // Assuming 'id' is the first column
+                        isAdded = true;
+                    }
+                }
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+        return isAdded;
     }
+
 
     @Override
     public ArrayList<User> getAll() {
@@ -46,7 +57,6 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         String query = "SELECT * FROM user"; // Adjust the table name if it's different in your DB
         try (Statement stmt = conx.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                // Create a new User object from each record in the ResultSet
                 User user = new User(
                         rs.getInt("cin"),
                         rs.getString("nom"),
@@ -84,24 +94,63 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
     }
 
     @Override
-    public void Update(User user) {
-        try {
-            String qry = "UPDATE `user` SET `nom`=?,`prenom`=?,`adresse`=?,`email`=?,`num_tel`=?,`profession`=?,`password`=?,`cin`=?,`role`=? WHERE 1";
-            PreparedStatement stm = conx.prepareStatement(qry);
-            stm.setString(1, user.getNom());
-            stm.setString(2, user.getPrenom());
-            stm.setString(3, user.getAdresse());
-            stm.setString(4, user.getEmail());
-            stm.setInt(5, user.getNum_tel());
-            stm.setInt(6, user.getCin());
-            stm.setString(7, user.getRoles());
-            stm.setString(8,user.getProfession());
-            stm.executeUpdate();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+    public boolean Update(User user) {
+        System.out.println("Attempting to update user with ID: " + user.getId());  // Debug statement
 
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        String query = "UPDATE user SET nom=?, prenom=?, adresse=?, email=?, num_tel=?, profession=?, password=?, cin=?, role=? WHERE id=?";
+
+        try {
+            connection = DataBase.getInstance().getConx();
+            connection.setAutoCommit(false);
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, user.getNom());
+            preparedStatement.setString(2, user.getPrenom());
+            preparedStatement.setString(3, user.getAdresse());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setInt(5, user.getNum_tel());
+            preparedStatement.setString(6, user.getProfession());
+            preparedStatement.setString(7, user.getPassword());
+            preparedStatement.setInt(8, user.getCin());
+            preparedStatement.setString(9, user.getRoles());
+            preparedStatement.setInt(10, user.getId());
+
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows > 0) {
+                connection.commit();
+                return true;
+            } else {
+                System.out.println("Update failed - No rows affected. Check if the ID exists: " + user.getId());
+                return false;
+            }
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) {
+                    connection.setAutoCommit(true);
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
+
+
+
 
     @Override
     public void Delete(User user) {

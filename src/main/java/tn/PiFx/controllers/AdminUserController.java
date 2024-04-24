@@ -82,6 +82,7 @@ public class AdminUserController implements Initializable  {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         load();
+
     }
     public void load() {
         int column = 0;
@@ -101,15 +102,18 @@ public class AdminUserController implements Initializable  {
 
                 // Storing the user ID in the userBox for retrieval later
                 userBox.setUserData(user.getId());
+                cardController.setAdminUserController(this);
+
 
                 // Set the action for the 'Modify' button
-               /* Button modifyButton = cardController.getModifyButton();
+               /*Button modifyButton = cardController.getModifyButton();
                 modifyButton.setOnAction(event -> {
                     // When a modify button is clicked, fetch the user ID from the card
                     Pane card = (Pane) ((Node) event.getSource()).getParent();
                     int userId = (int) card.getUserData();
 
                 });*/
+
 
                 // Position the card on the grid
                 if (column == 3) { // Assuming you want 3 cards per row
@@ -125,22 +129,32 @@ public class AdminUserController implements Initializable  {
         }
     }
 
+    public void populateEditForm(User user) {
+        // Check if the user object is null
+        if (user == null) {
+            showAlert("Error", "User data is not available.", Alert.AlertType.ERROR);
+            return;
+        }
 
+        // Populate form fields with user data
+        cinTF.setText(String.valueOf(user.getCin()));
+        nomTF.setText(user.getNom());
+        prenomTF.setText(user.getPrenom());
+        emailTF.setText(user.getEmail());
+        adresseTF.setText(user.getAdresse());
+        numtelTF.setText(String.valueOf(user.getNum_tel()));
+        professionTF.setText(user.getProfession());
+        mdpTF.setText(user.getPassword());
 
-
-    /*@Override
-    public void initialize(URL url, ResourceBundle rb) {
-        load();
-    }*/
-    private boolean emailExists(String email) throws SQLException {
+    }
+    private boolean emailExists(String email) throws SQLException{
         conx = DataBase.getInstance().getConx();
         String query = "SELECT * FROM `user` WHERE email=?";
         PreparedStatement statement = conx.prepareStatement(query);
-        statement.setString(1, email);
+        statement.setString(1,email);
         ResultSet resultSet = statement.executeQuery();
         return resultSet.next();
     }
-
     @FXML
     void AjouterButton(ActionEvent event) throws SQLException{
 
@@ -160,8 +174,8 @@ public class AdminUserController implements Initializable  {
                 if (!emailExists(EMAIL)) {
                     UserS.Add(new User(CIN,NOM,PRENOM,EMAIL,ADRESSE,NUMTEL,MDP,ROLE,PROFESSION));
                     uinfolabel.setText("Ajout Effectué");
-                    String subject = "Confirmation of Information Update";
-                    String body = String.format("Hello %s,\n\nYour information has been successfully updated.\n\nBest regards,", PRENOM);
+                    String subject = "Account confirmed !";
+                    String body = String.format("Hello %s,\n\nYour information has been successfully Added.\n\nBest regards,", PRENOM);
                     sendEmailConfirmation(EMAIL, subject, body);
                 } else {
                     uinfolabel.setText("Email existe déja");
@@ -184,8 +198,9 @@ public class AdminUserController implements Initializable  {
         Properties properties = new Properties();
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true"); // Enable TLS
+        properties.put("mail.smtp.auth","true");
+        properties.put("mail.smtp.stattls.enable","true");
+
 
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -217,36 +232,12 @@ public class AdminUserController implements Initializable  {
 
     }
 
-
-
-    @FXML
-    void ModifierButton(ActionEvent event){
-
-    }
-
-    private int getCurrentUserId(ActionEvent event) {
-
-        Button clickedButton = (Button) event.getSource(); // Cast to Button, the source of the event
-        Pane userCard = (Pane) clickedButton.getParent(); // The card is the parent of the clicked button
-        Integer userId = (Integer) userCard.getUserData(); // Retrieve the stored user ID
-        if (userId == null) {
-            throw new IllegalStateException("No user is currently selected.");
-        }
-        return userId;
-
-    }
-
-    private void refreshUserInterface() {
-        userContainer.getChildren().clear();
-
-        // Call the load method to refresh the user display
+    void refreshUserInterface() {
         load();
-        // If you have a TableView or ListView, you would refresh it like this:
-        // tableView.refresh(); or listView.setItems(...);
-
-        // If you are using pagination or some other form of dynamic data loading,
-        // you may need to reset or update those components as well.
     }
+
+
+
 
     private boolean validateUserData(User user) {
         return false;
@@ -258,30 +249,6 @@ public class AdminUserController implements Initializable  {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    private User getUserFromForm() {
-        try {
-            int cin = Integer.parseInt(cinTF.getText());
-            String nom = nomTF.getText();
-            String prenom = prenomTF.getText();
-            String email = emailTF.getText();
-            String adresse = adresseTF.getText();
-            String mdp = mdpTF.getText();
-            int numtel = Integer.parseInt(numtelTF.getText());
-            String role = roleCOMBOBOX.getValue() != null ? roleCOMBOBOX.getValue().toString() : "";
-            String profession = professionTF.getText();
-
-            if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || adresse.isEmpty() || mdp.isEmpty() || role.isEmpty() || profession.isEmpty()) {
-                showAlert("Validation Error", "Please fill in all the fields.", Alert.AlertType.ERROR);
-                return null;
-            }
-
-            return new User(cin, nom, prenom, email, adresse, numtel, mdp, role, profession);
-        } catch (NumberFormatException e) {
-            showAlert("Validation Error", "Please enter valid numbers for CIN and Telephone.", Alert.AlertType.ERROR);
-            return null;
-        }
     }
 
 

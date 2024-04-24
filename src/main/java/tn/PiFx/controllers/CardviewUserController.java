@@ -1,33 +1,33 @@
 package tn.PiFx.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.stage.Stage;
 import tn.PiFx.entities.User;
 import tn.PiFx.services.ServiceUtilisateurs;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-import java.io.IOException;
-
-
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 
-public class CardviewUserController {
+public class CardviewUserController implements Initializable {
     private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
 
     @FXML
+    private TextField idModifTF;
+    @FXML
     private TextField CinModifTF;
+
     @FXML
     private TextField AdresseModifTF;
 
@@ -47,10 +47,14 @@ public class CardviewUserController {
     private TextField PrenomModifTf;
 
     @FXML
+    public Button ModifyButton;
+
+    @FXML
+
     private TextField ProfessionModifTf;
 
     @FXML
-    private ComboBox<?> RolesModifCB;
+    private ComboBox<String> RolesModifCB;
     @FXML
     private Pane Card;
     private String[] colors = {"#CDB4DB", "#FFC8DD", "#FFAFCC", "#BDE0FE", "#A2D2FF",
@@ -61,10 +65,22 @@ public class CardviewUserController {
 
     int uid,unumtel;
     String unom, uprenom, uemail, umdp, urole;
+    private AdminUserController adminUserController;
+    private User currentUser;
+    ObservableList<String> RoleList = FXCollections.observableArrayList("User", "Admin");
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        RolesModifCB.setItems(RoleList);
+
+    }
+
     public void setData(User user){
+        this.currentUser = user;
         Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
         Card.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
-
+        idModifTF.setText(String.valueOf(user.getId()));
+        CinModifTF.setText(String.valueOf(user.getCin()));
         NomModifTf.setText(user.getNom());
         PrenomModifTf.setText(user.getPrenom());
         EmailModifTf.setText(user.getEmail());
@@ -72,43 +88,82 @@ public class CardviewUserController {
         NumTelModifTf.setText(String.valueOf(user.getNum_tel()));
         ProfessionModifTf.setText(user.getProfession());
         MdpModifTf.setText(user.getPassword());
-        //Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
-
-
+        RolesModifCB.setValue(user.getRoles());
+        Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
 
     }
+
 
 
     @FXML
     void SupprimerButtonUser(ActionEvent event) {
+        System.out.println("Test supp");
 
     }
+    @FXML
+    void ModifierButtonUser(ActionEvent event) throws SQLException {
+        System.out.println("test0");
 
-    public void ModifierButtonUser(ActionEvent event){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            AdminUserController AUC = loader.getController();
-            AUC.cinTF.setText(String.valueOf(uid));
-            AUC.numtelTF.setText(String.valueOf(unumtel));
-            AUC.nomTF.setText(unom);
-            AUC.prenomTF.setText(uprenom);
-            AUC.emailTF.setText(uemail);
-            AUC.mdpTF.setText(umdp);
-            //AUC.roleCOMBOBOX.setValue(urole);
 
-            stage.setScene(scene);
-            stage.show();
+            int id = Integer.parseInt(idModifTF.getText());
+            int cin = Integer.parseInt(CinModifTF.getText());
+            String nom = NomModifTf.getText();
+            String prenom = PrenomModifTf.getText();
+            String email = EmailModifTf.getText();
+            String adresse = AdresseModifTF.getText();
+            String mdp = MdpModifTf.getText();
+            int numtel = Integer.parseInt(NumTelModifTf.getText());
+            String role = RolesModifCB.getValue() != null ? RolesModifCB.getValue().toString() : "";
+            String profession = ProfessionModifTf.getText();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || adresse.isEmpty() || mdp.isEmpty() || role.isEmpty() || profession.isEmpty()) {
+                showAlert("Validation Error", "Please fill in all the fields.", Alert.AlertType.ERROR);
+            }
+
+            else {
+                UserS.Update(new User(id,cin, nom, prenom, email, adresse, numtel, mdp, role, profession));
+
+                // User userToUpdate = new User(id,cin, nom, prenom, email, adresse, numtel, mdp, role, profession);
+                System.out.println("test1");
+               // updateUserInDatabase(userToUpdate);
+                adminUserController.populateEditForm(this.currentUser);
+            }
+
+        } catch (NumberFormatException e) {
+            showAlert("Validation Error", "Please enter valid numbers for CIN and Telephone.", Alert.AlertType.ERROR);
         }
+
+    }
+
+    public void setAdminUserController(AdminUserController controller) {
+        this.adminUserController = controller;
+    }
+    
+
+
+    private void updateUserInDatabase(User user) {
+        boolean updateSuccess = UserS.Update(user);
+        if (updateSuccess) {
+            adminUserController.refreshUserInterface();
+        } else {
+            showAlert("Update Error", "Failed to update user information.", Alert.AlertType.ERROR);
+        }    }
+
+    private void showAlert(String validationError, String s, Alert.AlertType alertType) {
+
+        Alert alert = new Alert(alertType);
+        alert.setTitle(validationError);
+        alert.setHeaderText(null);
+        alert.setContentText(s);
+        alert.showAndWait();
     }
 
 
-
+    public Button getModifyButton() {
+        return ModifyButton;
+    }
 }
 
 
