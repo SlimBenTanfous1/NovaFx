@@ -52,6 +52,9 @@ public class LoginController implements Initializable{
 
 
 
+
+
+
     private void showAlert(String title, String content, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -92,6 +95,22 @@ public class LoginController implements Initializable{
             showAlert("Database Error", "An error occurred while attempting to log in: " + ex.getMessage(), Alert.AlertType.ERROR);
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    public void creerCompteLog(javafx.event.ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Register.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Waves - Inscription");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
