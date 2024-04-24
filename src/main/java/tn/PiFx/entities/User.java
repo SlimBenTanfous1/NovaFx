@@ -6,6 +6,8 @@ public class User {
 
     //Constructeur Vide
     public User(){}
+    public static User Current_User;
+
 
     //Constructeur Paramétré
     public User(int cin,String nom, String prenom,String email, String adresse,int num_tel, String password, String profession, String roles, String reset_token, String reset_token_expiration) {
@@ -50,6 +52,11 @@ public class User {
     public User(String nom, String prenom, String adresse, String email, int numtel, String mdp, String role, String profession) {
 
     }
+
+    public static void setCurrent_User(User Current_User) {
+        User.Current_User = Current_User;
+    }
+
 
     //Getters & Setters
     public int getCin() {

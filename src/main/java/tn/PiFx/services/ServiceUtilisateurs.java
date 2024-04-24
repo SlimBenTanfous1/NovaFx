@@ -25,8 +25,9 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             stm.setInt(5, user.getNum_tel());
             stm.setString(6, user.getPassword());
             stm.setInt(7, user.getCin());
-            stm.setString(8, user.getRoles());
+            stm.setString(8,user.getRoles());
             stm.setString(9, user.getProfession());
+
 
             int affectedRows = stm.executeUpdate();
             if (affectedRows > 0) {
@@ -153,7 +154,45 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
 
     @Override
-    public void Delete(User user) {
+    public boolean Delete(User user) {
+        String query = "DELETE FROM user WHERE id = ?";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            // Get a connection from your database helper class
+            connection = DataBase.getInstance().getConx();
+
+            // Prepare the SQL statement using the connection
+            preparedStatement = connection.prepareStatement(query);
+
+            // Set the id parameter in the prepared statement
+            preparedStatement.setInt(1, user.getId());
+
+            // Execute the delete statement
+            int affectedRows = preparedStatement.executeUpdate();
+
+            // Check how many rows were affected
+            if (affectedRows > 0) {
+                System.out.println("User deleted successfully.");
+                return true; // Return true if at least one row was deleted
+            } else {
+                System.out.println("No user found with ID: " + user.getId());
+                return false; // Return false if no rows were affected
+            }
+        } catch (SQLException e) {
+            System.err.println("SQL error occurred during the delete operation: " + e.getMessage());
+            return false;
+        } finally {
+            // Clean up JDBC objects
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                System.err.println("Error closing JDBC resources: " + e.getMessage());
+            }
+        }
+
 
     }
 

@@ -56,6 +56,11 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.2.1</version>
+        </dependency>
+        <dependency>
             <groupId>com.gluonhq</groupId>
             <artifactId>charm-down-core</artifactId>
             <version>3.8.6</version>
@@ -76,6 +81,12 @@
                     <version>0.0.8</version>
                     <configuration>
                         <mainClass>tn.PiFx.MainFx</mainClass>
+                        <launcher>app</launcher>
+                        <jlinkZipName>app</jlinkZipName>
+                        <jlinkImageName>app</jlinkImageName>
+                        <noManPages>true</noManPages>
+                        <stripDebug>true</stripDebug>
+                        <noHeaderFiles>true</noHeaderFiles>
                     </configuration>
                 </plugin>
             </plugins>

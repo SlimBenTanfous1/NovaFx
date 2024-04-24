@@ -76,6 +76,7 @@ public class CardviewUserController implements Initializable {
     }
 
     public void setData(User user){
+
         this.currentUser = user;
         Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
         Card.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
@@ -97,7 +98,30 @@ public class CardviewUserController implements Initializable {
 
     @FXML
     void SupprimerButtonUser(ActionEvent event) {
-        System.out.println("Test supp");
+        try {
+            // Assuming you have a TextField or similar widget to get the user's ID for deletion
+            int userId = Integer.parseInt(idModifTF.getText());  // Replace 'idModifTF' with your actual TextField's ID
+
+            if (userId > 0) {
+                User userToDelete = new User();
+                userToDelete.setId(userId);  // Set the ID on a User object, assuming User class has this method
+
+                // Call the delete method
+                boolean isDeleted = UserS.Delete(userToDelete);
+                if (isDeleted) {
+                    showAlert("Success", "User successfully deleted.", Alert.AlertType.INFORMATION);
+                    // Optional: Update UI to reflect the removal
+                } else {
+                    showAlert("Error", "Failed to delete the user. No user found with ID: " + userId, Alert.AlertType.ERROR);
+                }
+            } else {
+                showAlert("Error", "Invalid user ID.", Alert.AlertType.ERROR);
+            }
+        } catch (NumberFormatException e) {
+            showAlert("Error", "Invalid user ID format. Please enter a valid number.", Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            showAlert("Error", "An error occurred while deleting the user: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
 
     }
     @FXML

@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class MainFx extends Application{
@@ -15,17 +14,16 @@ public class MainFx extends Application{
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/LogIn.fxml"));
         try {
-            System.out.println("before");
             Parent root = loader.load();
-            System.out.println("after");
             Scene scene =new Scene(root);
-            primaryStage.setTitle("Test-Nova");
+            primaryStage.setTitle("Nova-Assurance");
             primaryStage.setScene(scene);
             primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();        }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
     }
 

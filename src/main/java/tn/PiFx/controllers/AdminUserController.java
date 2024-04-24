@@ -27,6 +27,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+
+import org.apache.commons.codec.digest.DigestUtils;
 import tn.PiFx.services.ServiceUtilisateurs;
 import tn.PiFx.entities.User;
 import tn.PiFx.utils.DataBase;
