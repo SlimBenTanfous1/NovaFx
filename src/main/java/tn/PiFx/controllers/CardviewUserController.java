@@ -91,7 +91,6 @@ public class CardviewUserController implements Initializable {
         MdpModifTf.setText(user.getPassword());
         RolesModifCB.setValue(user.getRoles());
         Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
-
     }
 
 
@@ -99,14 +98,12 @@ public class CardviewUserController implements Initializable {
     @FXML
     void SupprimerButtonUser(ActionEvent event) {
         try {
-            // Assuming you have a TextField or similar widget to get the user's ID for deletion
-            int userId = Integer.parseInt(idModifTF.getText());  // Replace 'idModifTF' with your actual TextField's ID
+            int userId = Integer.parseInt(idModifTF.getText());
 
             if (userId > 0) {
                 User userToDelete = new User();
-                userToDelete.setId(userId);  // Set the ID on a User object, assuming User class has this method
+                userToDelete.setId(userId);
 
-                // Call the delete method
                 boolean isDeleted = UserS.Delete(userToDelete);
                 if (isDeleted) {
                     showAlert("Success", "User successfully deleted.", Alert.AlertType.INFORMATION);
