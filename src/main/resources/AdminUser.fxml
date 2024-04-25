@@ -107,8 +107,8 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="76.0" text="Nom" />
-                              <Button mnemonicParsing="false" prefHeight="59.0" prefWidth="92.0" text="Email" />
+                              <Button mnemonicParsing="false" onAction="#TriNom" prefHeight="52.0" prefWidth="76.0" text="Nom" />
+                              <Button mnemonicParsing="false" onAction="#TriEmail" prefHeight="59.0" prefWidth="92.0" text="Email" />
                            </children>
                         </HBox>
                      </children></AnchorPane>

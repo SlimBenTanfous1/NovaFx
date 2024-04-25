@@ -4,20 +4,29 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.GridPane;
 import tn.PiFx.entities.User;
 import tn.PiFx.services.ServiceUtilisateurs;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
 
 
 public class CardviewUserController implements Initializable {
@@ -30,12 +39,11 @@ public class CardviewUserController implements Initializable {
 
     @FXML
     private TextField AdresseModifTF;
+    @FXML
+    public GridPane userContainer;
 
     @FXML
     private TextField EmailModifTf;
-
-    @FXML
-    private TextField MdpModifTf;
 
     @FXML
     private TextField NomModifTf;
@@ -67,7 +75,7 @@ public class CardviewUserController implements Initializable {
     String unom, uprenom, uemail, umdp, urole;
     private AdminUserController adminUserController;
     private User currentUser;
-    ObservableList<String> RoleList = FXCollections.observableArrayList("User", "Admin");
+    ObservableList<String> RoleList = FXCollections.observableArrayList("[\"ROLE_USER\"]", "[\"ROLE_ADMIN\"]");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,10 +96,23 @@ public class CardviewUserController implements Initializable {
         AdresseModifTF.setText(user.getAdresse());
         NumTelModifTf.setText(String.valueOf(user.getNum_tel()));
         ProfessionModifTf.setText(user.getProfession());
-        MdpModifTf.setText(user.getPassword());
         RolesModifCB.setValue(user.getRoles());
         Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
     }
+
+
+    /*public void setData(User user) {
+
+        Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
+        Card.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
+        uid = user.getId();
+        uprenom = user.getPrenom();
+        unom = user.getNom();
+        uemail = user.getEmail();
+        umdp = user.getPassword();
+        urole = user.getRoles();
+        unumtel = user.getNum_tel();
+    }*/
 
 
 
@@ -103,11 +124,9 @@ public class CardviewUserController implements Initializable {
             if (userId > 0) {
                 User userToDelete = new User();
                 userToDelete.setId(userId);
-
                 boolean isDeleted = UserS.Delete(userToDelete);
                 if (isDeleted) {
                     showAlert("Success", "User successfully deleted.", Alert.AlertType.INFORMATION);
-                    // Optional: Update UI to reflect the removal
                 } else {
                     showAlert("Error", "Failed to delete the user. No user found with ID: " + userId, Alert.AlertType.ERROR);
                 }
@@ -119,58 +138,38 @@ public class CardviewUserController implements Initializable {
         } catch (Exception e) {
             showAlert("Error", "An error occurred while deleting the user: " + e.getMessage(), Alert.AlertType.ERROR);
         }
-
     }
+
     @FXML
     void ModifierButtonUser(ActionEvent event) throws SQLException {
         System.out.println("test0");
-
         try {
-
             int id = Integer.parseInt(idModifTF.getText());
             int cin = Integer.parseInt(CinModifTF.getText());
             String nom = NomModifTf.getText();
             String prenom = PrenomModifTf.getText();
             String email = EmailModifTf.getText();
             String adresse = AdresseModifTF.getText();
-            String mdp = MdpModifTf.getText();
             int numtel = Integer.parseInt(NumTelModifTf.getText());
             String role = RolesModifCB.getValue() != null ? RolesModifCB.getValue().toString() : "";
             String profession = ProfessionModifTf.getText();
 
 
-            if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || adresse.isEmpty() || mdp.isEmpty() || role.isEmpty() || profession.isEmpty()) {
+            if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || adresse.isEmpty() || role.isEmpty() || profession.isEmpty()) {
                 showAlert("Validation Error", "Please fill in all the fields.", Alert.AlertType.ERROR);
             }
-
             else {
-                UserS.Update(new User(id,cin,nom, prenom, adresse, email, numtel, mdp, role, profession));
-
+                UserS.Update(new User(id,cin,nom, prenom, adresse, email, numtel, role, profession));
                 System.out.println("test1");
                 adminUserController.populateEditForm(this.currentUser);
             }
-
         } catch (NumberFormatException e) {
             showAlert("Validation Error", "Please enter valid numbers for CIN and Telephone.", Alert.AlertType.ERROR);
         }
-
-
     }
-
     public void setAdminUserController(AdminUserController controller) {
         this.adminUserController = controller;
     }
-    
-
-
-    private void updateUserInDatabase(User user) {
-        boolean updateSuccess = UserS.Update(user);
-        if (updateSuccess) {
-            adminUserController.refreshUserInterface();
-        } else {
-            showAlert("Update Error", "Failed to update user information.", Alert.AlertType.ERROR);
-        }    }
-
     private void showAlert(String validationError, String s, Alert.AlertType alertType) {
 
         Alert alert = new Alert(alertType);
@@ -179,11 +178,10 @@ public class CardviewUserController implements Initializable {
         alert.setContentText(s);
         alert.showAndWait();
     }
-
-
     public Button getModifyButton() {
         return ModifyButton;
     }
+
 }
 
 

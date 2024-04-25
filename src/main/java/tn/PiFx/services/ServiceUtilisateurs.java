@@ -14,7 +14,7 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
     @Override
     public boolean Add(User user) {
-        String qry = "INSERT INTO `user`(`nom`, `prenom`, `adresse`, `email`, `num_tel`, `password`, `cin`, `role`,`profession`) VALUES (?,?,?,?,?,?,?,?,?)";
+        String qry = "INSERT INTO `user`(`nom`, `prenom`, `adresse`, `email`, `num_tel`, `profession`, `password`, `cin`,`role`) VALUES (?,?,?,?,?,?,?,?,?)";
         boolean isAdded = false;
 
         try (PreparedStatement stm = conx.prepareStatement(qry, Statement.RETURN_GENERATED_KEYS)) {
@@ -23,18 +23,16 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             stm.setString(3, user.getAdresse());
             stm.setString(4, user.getEmail());
             stm.setInt(5, user.getNum_tel());
-            stm.setString(6, user.getPassword());
-            stm.setInt(7, user.getCin());
-            stm.setString(8,user.getRoles());
-            stm.setString(9, user.getProfession());
-
+            stm.setString(6, user.getProfession());
+            stm.setString(7, user.getPassword());
+            stm.setInt(8, user.getCin());
+            stm.setString(9,user.getRoles());
 
             int affectedRows = stm.executeUpdate();
             if (affectedRows > 0) {
-                // Retrieve the auto-generated id
                 try (ResultSet generatedKeys = stm.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
-                        user.setId(generatedKeys.getInt(1));  // Assuming 'id' is the first column
+                        user.setId(generatedKeys.getInt(1));
                         isAdded = true;
                     }
                 }
@@ -42,7 +40,6 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
         return isAdded;
     }
 
@@ -67,16 +64,15 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
                         rs.getString("adresse"),
                         rs.getInt("num_tel"),
                         rs.getString("password"),
-                        rs.getString("role"),
-                        rs.getString("profession")
+                        rs.getString("profession"),
+                        rs.getString("role")
                 );
-                users.add(user); // Add the user to the list
+                users.add(user);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            // Handle exception - maybe log it and return an empty list or rethrow as a custom exception
         }
-        return users; // Return the list of users (which may be empty if there are no users or an error occurred)
+        return users;
     }
 
 
@@ -104,12 +100,9 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
         try {
             String query = "UPDATE user SET nom=?, prenom=?, adresse=?, email=?, num_tel=?, profession=?, password=?, cin=?, role=? WHERE id=?";
-
             connection = DataBase.getInstance().getConx();
             connection.setAutoCommit(false);
-
             preparedStatement = connection.prepareStatement(query);
-
             preparedStatement.setString(1, user.getNom());
             preparedStatement.setString(2, user.getPrenom());
             preparedStatement.setString(3, user.getAdresse());
@@ -162,16 +155,7 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         } catch (SQLException e) {
             System.err.println("SQL error occurred during the delete operation: " + e.getMessage());
             return false;
-        } finally {
-            try {
-                if (preparedStatement != null) preparedStatement.close();
-                if (connection != null) connection.close();
-            } catch (SQLException e) {
-                System.err.println("Error closing JDBC resources: " + e.getMessage());
-            }
         }
-
-
     }
 
     @Override

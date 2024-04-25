@@ -1,38 +1,20 @@
 package tn.PiFx.controllers;
-
+//--Imports--//
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-
-import org.apache.commons.codec.digest.DigestUtils;
 import tn.PiFx.services.ServiceUtilisateurs;
 import tn.PiFx.entities.User;
 import tn.PiFx.utils.DataBase;
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -41,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.ResourceBundle;
+//--Imports End--//
 
 public class AdminUserController implements Initializable  {
     @FXML
@@ -49,28 +32,20 @@ public class AdminUserController implements Initializable  {
     private URL location;
     @FXML
     private TextField adresseTF;
-
     @FXML
     public TextField cinTF;
-
     @FXML
     public TextField emailTF;
-
     @FXML
     public TextField mdpTF;
-
     @FXML
     public TextField nomTF;
-
     @FXML
     public TextField numtelTF;
-
     @FXML
     public TextField prenomTF;
-
     @FXML
     public TextField professionTF;
-
     @FXML
     public ComboBox<?> roleCOMBOBOX;
     @FXML
@@ -78,20 +53,22 @@ public class AdminUserController implements Initializable  {
     @FXML
     public GridPane userContainer;
 
+
     private Connection conx;
     private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        load();
 
+
+        load();
     }
+
     public void load() {
         int column = 0;
         int row = 1;
         try {
-            userContainer.getChildren().clear(); // Clear existing content if refreshing
-
+            userContainer.getChildren().clear();
             for (User user : UserS.afficher()) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/CardViewUser.fxml"));
@@ -104,7 +81,6 @@ public class AdminUserController implements Initializable  {
                     column = 0;
                     row++;
                 }
-
                 userContainer.add(userBox, column++, row);
                 GridPane.setMargin(userBox, new Insets(10));
             }
@@ -112,15 +88,58 @@ public class AdminUserController implements Initializable  {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void TriEmail(ActionEvent actionEvent) {
+        int column = 0;
+        int row = 1;
+        try {
+            for (User user : UserS.TriparEmail()) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
+                Pane userBox = fxmlLoader.load();
+                CardviewUserController cardC = fxmlLoader.getController();
+                cardC.setData(user);
+                if (column == 3) {
+                    column = 0;
+                    ++row;
+                }
+                userContainer.add(userBox, column++, row);
+                GridPane.setMargin(userBox, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    @FXML
+    void TriNom(ActionEvent actionEvent) {
+        int column = 0;
+        int row = 1;
+        try {
+            for (User user : UserS.TriparNom()) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
+                Pane userBox = fxmlLoader.load();
+                Object cardC = fxmlLoader.getController();
+               // cardC.setData(user);
+                if (column == 3) {
+                    column = 0;
+                    ++row;
+                }
+                userContainer.add(userBox, column++, row);
+                GridPane.setMargin(userBox, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void populateEditForm(User user) {
-        // Check if the user object is null
         if (user == null) {
             showAlert("Error", "User data is not available.", Alert.AlertType.ERROR);
             return;
         }
-
-        // Populate form fields with user data
         cinTF.setText(String.valueOf(user.getCin()));
         nomTF.setText(user.getNom());
         prenomTF.setText(user.getPrenom());
@@ -129,8 +148,8 @@ public class AdminUserController implements Initializable  {
         numtelTF.setText(String.valueOf(user.getNum_tel()));
         professionTF.setText(user.getProfession());
         mdpTF.setText(user.getPassword());
-
     }
+
     private boolean emailExists(String email) throws SQLException{
         conx = DataBase.getInstance().getConx();
         String query = "SELECT * FROM `user` WHERE email=?";
@@ -141,7 +160,6 @@ public class AdminUserController implements Initializable  {
     }
     @FXML
     void AjouterButton(ActionEvent event) throws SQLException{
-
         int CIN = Integer.parseInt(cinTF.getText());
         String NOM = nomTF.getText();
         String PRENOM = prenomTF.getText();
@@ -168,51 +186,35 @@ public class AdminUserController implements Initializable  {
         } else {
             uinfolabel.setText("Email est invalide");
         }
-
-
     }
+
     private void sendEmailConfirmation(String recipient, String subject, String body){
         final String senderEmail = "slim.bentanfous@esprit.tn";
         final String senderPassword = "Salamlam2002!";
 
         String host = "smtp-mail.outlook.com";
-
         Properties properties = new Properties();
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.auth","true");
         properties.put("mail.smtp.stattls.enable","true");
-
-
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
             return new PasswordAuthentication(senderEmail, senderPassword);
         }
     });
         try {
-            // Create a default MimeMessage object
             MimeMessage message = new MimeMessage(session);
-
-            // Set From: header field
             message.setFrom(new InternetAddress(senderEmail));
-
-            // Set To: header field
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-
-            // Set Subject: header field
             message.setSubject(subject);
-
-            // Now set the actual message
             message.setText(body);
-
-            // Send message
             Transport.send(message);
             System.out.println("Confirmation email sent successfully....");
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
-
     }
 
     void refreshUserInterface() {

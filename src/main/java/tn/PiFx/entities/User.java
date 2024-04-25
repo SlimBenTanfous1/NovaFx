@@ -53,6 +53,9 @@ public class User {
 
     }
 
+    public User(int id, int cin, String nom, String prenom, String adresse, String email, int numtel, String role, String profession) {
+    }
+
     public static void setCurrent_User(User Current_User) {
         User.Current_User = Current_User;
     }
