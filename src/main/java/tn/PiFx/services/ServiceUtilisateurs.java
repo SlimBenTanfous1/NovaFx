@@ -107,6 +107,7 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
             connection = DataBase.getInstance().getConx();
             connection.setAutoCommit(false);
+
             preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1, user.getNom());
@@ -129,27 +130,12 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
                 return false;
             }
         } catch (SQLException e) {
-            if (connection != null) {
-                try {
-                    connection.rollback();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
             e.printStackTrace();
-            return false;
-        } finally {
-            try {
-                if (preparedStatement != null) preparedStatement.close();
-                if (connection != null) {
-                    connection.setAutoCommit(true);
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+
         }
+            return false;
     }
+
 
 
 
@@ -160,31 +146,23 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         PreparedStatement preparedStatement = null;
 
         try {
-            // Get a connection from your database helper class
             connection = DataBase.getInstance().getConx();
-
-            // Prepare the SQL statement using the connection
             preparedStatement = connection.prepareStatement(query);
-
-            // Set the id parameter in the prepared statement
             preparedStatement.setInt(1, user.getId());
 
-            // Execute the delete statement
             int affectedRows = preparedStatement.executeUpdate();
 
-            // Check how many rows were affected
             if (affectedRows > 0) {
                 System.out.println("User deleted successfully.");
-                return true; // Return true if at least one row was deleted
+                return true;
             } else {
                 System.out.println("No user found with ID: " + user.getId());
-                return false; // Return false if no rows were affected
+                return false;
             }
         } catch (SQLException e) {
             System.err.println("SQL error occurred during the delete operation: " + e.getMessage());
             return false;
         } finally {
-            // Clean up JDBC objects
             try {
                 if (preparedStatement != null) preparedStatement.close();
                 if (connection != null) connection.close();

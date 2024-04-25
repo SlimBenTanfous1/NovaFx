@@ -95,36 +95,18 @@ public class AdminUserController implements Initializable  {
             for (User user : UserS.afficher()) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/CardViewUser.fxml"));
-
                 Pane userBox = fxmlLoader.load();
                 CardviewUserController cardController = fxmlLoader.getController();
-
-                // Setting user data to the card's controller
                 cardController.setData(user);
-
-                // Storing the user ID in the userBox for retrieval later
                 userBox.setUserData(user.getId());
                 cardController.setAdminUserController(this);
-
-
-                // Set the action for the 'Modify' button
-               /*Button modifyButton = cardController.getModifyButton();
-                modifyButton.setOnAction(event -> {
-                    // When a modify button is clicked, fetch the user ID from the card
-                    Pane card = (Pane) ((Node) event.getSource()).getParent();
-                    int userId = (int) card.getUserData();
-
-                });*/
-
-
-                // Position the card on the grid
-                if (column == 3) { // Assuming you want 3 cards per row
+                if (column == 3) {
                     column = 0;
                     row++;
                 }
 
-                userContainer.add(userBox, column++, row); // Add the card to the grid
-                GridPane.setMargin(userBox, new Insets(10)); // Set margin for styling
+                userContainer.add(userBox, column++, row);
+                GridPane.setMargin(userBox, new Insets(10));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -169,15 +151,13 @@ public class AdminUserController implements Initializable  {
         int NUMTEL = Integer.parseInt(numtelTF.getText());
         String ROLE = (String) roleCOMBOBOX.getValue();
         String PROFESSION = professionTF.getText();
-
-        //String IMAGE = pdptf.getText();
         if (EMAIL.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com|outlook\\.(com|tn|fr)|yahoo\\.(com|tn|fr))$")){
             if (numtelTF.getText().matches("\\d{8}")) {
                 if (!emailExists(EMAIL)) {
                     UserS.Add(new User(CIN,NOM,PRENOM,EMAIL,ADRESSE,NUMTEL,MDP,ROLE,PROFESSION));
                     uinfolabel.setText("Ajout Effectué");
                     String subject = "Account confirmed !";
-                    String body = String.format("Hello %s,\n\nYour information has been successfully Added.\n\nBest regards,", PRENOM);
+                    String body = String.format("Bonjour%s,\n\nVos informations ont bien été enregistrés.\n\nCordialement,", PRENOM);
                     sendEmailConfirmation(EMAIL, subject, body);
                 } else {
                     uinfolabel.setText("Email existe déja");
@@ -192,12 +172,13 @@ public class AdminUserController implements Initializable  {
 
     }
     private void sendEmailConfirmation(String recipient, String subject, String body){
-        final String senderEmail = "novassurance@outlook.com";
-        final String senderPassword = "changer@!0";
+        final String senderEmail = "slim.bentanfous@esprit.tn";
+        final String senderPassword = "Salamlam2002!";
 
         String host = "smtp-mail.outlook.com";
 
         Properties properties = new Properties();
+        properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.auth","true");
@@ -237,6 +218,7 @@ public class AdminUserController implements Initializable  {
     void refreshUserInterface() {
         load();
     }
+
 
 
 
