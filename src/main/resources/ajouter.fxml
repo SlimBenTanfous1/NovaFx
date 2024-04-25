@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="950.0" styleClass="right-bar" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.Ajouter">
+   <children>
+      <HBox layoutX="110.0" layoutY="71.0" prefHeight="558.0" prefWidth="730.0" styleClass="show-box" stylesheets="@style/styleafficher.css">
+         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="363.0">
+            <TextField fx:id="nom" alignment="TOP_LEFT" prefHeight="34.0" prefWidth="229.0" promptText="Nom" stylesheets="@style/styleafficher.css">
+               <VBox.margin>
+                  <Insets left="70.0" right="50.0" top="10.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="search" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </TextField>
+            <!-- Add Text elements for error messages with a default font -->
+            <Text fx:id="errorNom" fill="RED" wrappingWidth="181.5999755859375">
+               <VBox.margin>
+                  <Insets left="100.0" top="10.0" />
+               </VBox.margin></Text>
+            <TextField fx:id="adresse" prefHeight="34.0" prefWidth="229.0" promptText="Adresse" stylesheets="@style/styleafficher.css">
+               <VBox.margin>
+                  <Insets left="70.0" right="50.0" top="10.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="search" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </TextField>
+            <Text fx:id="errorAdresse" fill="RED" wrappingWidth="195.20001220703125">
+               <VBox.margin>
+                  <Insets left="100.0" top="10.0" />
+               </VBox.margin></Text>
+            <TextField fx:id="email" prefHeight="34.0" prefWidth="229.0" promptText="Email" stylesheets="@style/styleafficher.css">
+               <VBox.margin>
+                  <Insets left="70.0" right="50.0" top="10.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="search" />
+               </styleClass>
+            </TextField>
+            <Text fx:id="errorEmail" fill="RED" wrappingWidth="190.4000244140625">
+               <VBox.margin>
+                  <Insets left="100.0" top="10.0" />
+               </VBox.margin></Text>
+            <TextField fx:id="phone" prefHeight="34.0" prefWidth="229.0" promptText="Telephone" stylesheets="@style/styleafficher.css">
+               <VBox.margin>
+                  <Insets left="70.0" right="50.0" top="10.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="search" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </TextField>
+            <Text fx:id="errorPhone" fill="RED" wrappingWidth="196.00003051757812">
+               <VBox.margin>
+                  <Insets left="100.0" top="10.0" />
+               </VBox.margin></Text>
+         </VBox>
+         <VBox prefHeight="558.0" prefWidth="368.0">
+            <HBox alignment="CENTER" prefHeight="258.0" prefWidth="368.0">
+               <Button fx:id="selectImage" mnemonicParsing="false" onAction="#selectImageAction" prefHeight="26.0" prefWidth="100.0" styleClass="image-button" stylesheets="@style/styleafficher.css" text="Select Image" textFill="WHITE" />
+               <ImageView fx:id="imageView" fitHeight="131.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" />
+            </HBox>
+            <Button fx:id="save" mnemonicParsing="false" onAction="#ajouterRestaurantAction" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="150.0" top="160.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </VBox>
+       </HBox>
+   </children>
+</AnchorPane>
