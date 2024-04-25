@@ -3,7 +3,7 @@ package tn.PiFx.entities;
 public class User {
     int cin,num_tel;
     String nom,prenom,adresse,mdp,profession,roles;
-
+String ahmed,baire;
     //Constructeur Vide
     public User(){}
 
