@@ -7,7 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+//test
+//test
 public class LoginController {
     public boolean authenticateUser(String username, String password) {
         Connection con = DataBase.getInstance().getConx();
