@@ -12,6 +12,8 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+
+import org.w3c.dom.Text;
 import tn.PiFx.services.ServiceUtilisateurs;
 import tn.PiFx.entities.User;
 import tn.PiFx.utils.DataBase;
@@ -23,6 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.ResourceBundle;
+
 //--Imports End--//
 
 public class AdminUserController implements Initializable  {
@@ -52,6 +55,17 @@ public class AdminUserController implements Initializable  {
     private TextField uinfolabel;
     @FXML
     public GridPane userContainer;
+    @FXML
+    private Text errorNom;
+
+    @FXML
+    private Text errorAdresse;
+
+    @FXML
+    private Text errorEmail;
+
+    @FXML
+    private Text errorPhone;
 
 
     private Connection conx;
@@ -59,10 +73,9 @@ public class AdminUserController implements Initializable  {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
         load();
     }
+
 
     public void load() {
         int column = 0;
@@ -159,34 +172,77 @@ public class AdminUserController implements Initializable  {
         return resultSet.next();
     }
     @FXML
-    void AjouterButton(ActionEvent event) throws SQLException{
-        int CIN = Integer.parseInt(cinTF.getText());
-        String NOM = nomTF.getText();
-        String PRENOM = prenomTF.getText();
-        String EMAIL = emailTF.getText();
-        String ADRESSE = adresseTF.getText();
-        String MDP = mdpTF.getText();
-        int NUMTEL = Integer.parseInt(numtelTF.getText());
-        String ROLE = (String) roleCOMBOBOX.getValue();
-        String PROFESSION = professionTF.getText();
-        if (EMAIL.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com|outlook\\.(com|tn|fr)|yahoo\\.(com|tn|fr))$")){
-            if (numtelTF.getText().matches("\\d{8}")) {
-                if (!emailExists(EMAIL)) {
-                    UserS.Add(new User(CIN,NOM,PRENOM,EMAIL,ADRESSE,NUMTEL,MDP,ROLE,PROFESSION));
-                    uinfolabel.setText("Ajout Effectué");
-                    String subject = "Account confirmed !";
-                    String body = String.format("Bonjour%s,\n\nVos informations ont bien été enregistrés.\n\nCordialement,", PRENOM);
-                    sendEmailConfirmation(EMAIL, subject, body);
+    void AjouterButton(ActionEvent event) {
+        try {
+            int CIN = Integer.parseInt(cinTF.getText());
+            String NOM = nomTF.getText();
+            String PRENOM = prenomTF.getText();
+            String EMAIL = emailTF.getText();
+            String ADRESSE = adresseTF.getText();
+            String MDP = mdpTF.getText();
+            int NUMTEL = Integer.parseInt(numtelTF.getText());
+            String ROLE = (String) roleCOMBOBOX.getValue();
+            String PROFESSION = professionTF.getText();
+            boolean isValid = true;
+            String errorMessage = "";
+            if (cinTF.getText().isEmpty() || cinTF.getText().length() != 8) {
+                errorMessage += "CIN doit être de 8 chiffres.\n";
+                isValid = false;
+            }
+            if (NOM.trim().isEmpty() || NOM.matches(".*\\d+.*")) {
+                errorMessage += "Nom est requis et ne doit pas contenir de chiffres.\n";
+                isValid = false;
+            }
+            if (PRENOM.trim().isEmpty() || PRENOM.matches(".*\\d+.*")) {
+                errorMessage += "Prénom est requis et ne doit pas contenir de chiffres.\n";
+                isValid = false;
+            }
+            if (ADRESSE.trim().isEmpty()) {
+                errorMessage += "Adresse est requise.\n";
+                isValid = false;
+            }
+            if (MDP.trim().isEmpty()) {
+                errorMessage += "Mot de passe est requis.\n";
+                isValid = false;
+            }
+            if (ROLE == null || ROLE.trim().isEmpty()) {
+                errorMessage += "Rôle est requis.\n";
+                isValid = false;
+            }
+            if (PROFESSION.trim().isEmpty()) {
+                errorMessage += "Profession est requise.\n";
+                isValid = false;
+            }
+            if (isValid) {
+                if (EMAIL.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com|outlook\\.(com|tn|fr)|yahoo\\.(com|tn|fr))$")) {
+                    if (numtelTF.getText().matches("\\d{8}")) {
+                        if (!emailExists(EMAIL)) {
+                            UserS.Add(new User(CIN, NOM, PRENOM, EMAIL, ADRESSE, NUMTEL, MDP, ROLE, PROFESSION));
+                            uinfolabel.setText("Ajout Effectué");
+                            String subject = "Account confirmed !";
+                            String body = String.format("Bonjour%s,\n\nVos informations ont bien été enregistrés.\n\nCordialement,", PRENOM);
+                            sendEmailConfirmation(EMAIL, subject, body);
+                        }
+                        else {
+                            uinfolabel.setText("Email existe déjà.");
+                        }
+                    } else {
+                        uinfolabel.setText("N° Télèphone est invalide.");
+                    }
                 } else {
-                    uinfolabel.setText("Email existe déja");
+                    uinfolabel.setText("Email est invalide.");
                 }
             } else {
-                uinfolabel.setText("N° Télèphone est invalide");
+                uinfolabel.setText(errorMessage);
             }
-        } else {
-            uinfolabel.setText("Email est invalide");
+
+        } catch (NumberFormatException e) {
+            uinfolabel.setText("CIN et Numéro de Téléphone doivent être des chiffres.");
+        } catch (SQLException e) {
+            uinfolabel.setText("Erreur de base de données.");
         }
     }
+
 
     private void sendEmailConfirmation(String recipient, String subject, String body){
         final String senderEmail = "slim.bentanfous@esprit.tn";

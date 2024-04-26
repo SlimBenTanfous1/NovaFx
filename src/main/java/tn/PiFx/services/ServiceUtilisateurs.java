@@ -162,6 +162,29 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
     public void DeleteByID(int id) {
 
     }
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com|outlook\\.(com|tn|fr)|yahoo\\.(com|tn|fr))$";
+        return email.matches(emailRegex);
+    }
+    public boolean isValidPhoneNumber(int numTel) {
+        String numTelStr = String.valueOf(numTel);
+        return numTelStr.length() == 8;
+    }
+    public boolean checkUserExists(String email) {
+        String req = "SELECT count(1) FROM `user` WHERE `email`=?";
+        boolean exists = false;
+        try {
+            PreparedStatement ps = conx.prepareStatement(req);
+            ps.setString(1, email);
+            ResultSet res = ps.executeQuery();
+            if (res.next()) {
+                exists = res.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error checking if user exists: " + e.getMessage());
+        }
+        return exists;
+    }
 
 
 }
