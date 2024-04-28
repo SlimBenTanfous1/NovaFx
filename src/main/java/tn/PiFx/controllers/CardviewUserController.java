@@ -142,8 +142,12 @@ public class CardviewUserController implements Initializable {
 
     @FXML
     void ModifierButtonUser(ActionEvent event) throws SQLException {
+
         System.out.println("test0");
+
         try {
+            System.out.println("ID from TextField: " + idModifTF.getText());
+
             int id = Integer.parseInt(idModifTF.getText());
             int cin = Integer.parseInt(CinModifTF.getText());
             String nom = NomModifTf.getText();
@@ -153,15 +157,24 @@ public class CardviewUserController implements Initializable {
             int numtel = Integer.parseInt(NumTelModifTf.getText());
             String role = RolesModifCB.getValue() != null ? RolesModifCB.getValue().toString() : "";
             String profession = ProfessionModifTf.getText();
+            System.out.println("ID after parse: " + idModifTF.getText());
+
 
 
             if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || adresse.isEmpty() || role.isEmpty() || profession.isEmpty()) {
                 showAlert("Validation Error", "Please fill in all the fields.", Alert.AlertType.ERROR);
             }
             else {
-                UserS.Update(new User(id,cin,nom, prenom, adresse, email, numtel, role, profession));
-                System.out.println("test1");
-                adminUserController.populateEditForm(this.currentUser);
+                User updatedUser = new User(id, cin, nom, prenom, adresse, email, numtel, role, profession);
+
+                boolean updateSuccess = UserS.Update(updatedUser);
+                if (updateSuccess) {
+                    showAlert("Success", "User updated successfully.", Alert.AlertType.INFORMATION);
+                    System.out.println("test1");
+                    adminUserController.populateEditForm(this.currentUser);
+                } else {
+                    showAlert("Error", "Failed to update user. Check if the ID exists.", Alert.AlertType.ERROR);
+                }
             }
         } catch (NumberFormatException e) {
             showAlert("Validation Error", "Please enter valid numbers for CIN and Telephone.", Alert.AlertType.ERROR);

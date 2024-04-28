@@ -10,19 +10,7 @@ public class User {
 
 
     //Constructeur Paramétré
-    public User(int cin,String nom, String prenom,String email, String adresse,int num_tel, String password, String profession, String roles, String reset_token, String reset_token_expiration) {
-        this.cin = cin;
-        this.num_tel = num_tel;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.adresse = adresse;
-        this.password = password;
-        this.profession = profession;
-        this.roles = roles;
-        this.reset_token = reset_token;
-        this.reset_token_expiration = reset_token_expiration;
-    }
+
 
     public User(int cin, String nom, String prenom, String email, String adresse,int num_tel, String password, String roles,String profession) {
         this.cin = cin;
@@ -49,11 +37,18 @@ public class User {
         this.roles = roles;
     }
 
-    public User(String nom, String prenom, String adresse, String email, int numtel, String mdp, String role, String profession) {
 
-    }
 
     public User(int id, int cin, String nom, String prenom, String adresse, String email, int numtel, String role, String profession) {
+        this.cin = cin;
+        this.num_tel = numtel;
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.profession = profession;
+        this.roles = role;
     }
 
     public static void setCurrent_User(User Current_User) {
@@ -156,4 +151,23 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "cin=" + cin +
+                ", num_tel=" + num_tel +
+                ", id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", profession='" + profession + '\'' +
+                ", roles='" + roles + '\'' +
+                '}';
+    }
+
+
 }
+

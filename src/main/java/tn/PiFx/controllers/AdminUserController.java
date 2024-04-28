@@ -1,5 +1,6 @@
 package tn.PiFx.controllers;
 //--Imports--//
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -50,7 +51,7 @@ public class AdminUserController implements Initializable  {
     @FXML
     public TextField professionTF;
     @FXML
-    public ComboBox<?> roleCOMBOBOX;
+    public ComboBox<String> roleCOMBOBOX;
     @FXML
     private TextField uinfolabel;
     @FXML
@@ -74,6 +75,7 @@ public class AdminUserController implements Initializable  {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         load();
+
     }
 
 
@@ -145,7 +147,6 @@ public class AdminUserController implements Initializable  {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void populateEditForm(User user) {
@@ -174,6 +175,7 @@ public class AdminUserController implements Initializable  {
     @FXML
     void AjouterButton(ActionEvent event) {
         try {
+
             int CIN = Integer.parseInt(cinTF.getText());
             String NOM = nomTF.getText();
             String PRENOM = prenomTF.getText();
@@ -181,7 +183,7 @@ public class AdminUserController implements Initializable  {
             String ADRESSE = adresseTF.getText();
             String MDP = mdpTF.getText();
             int NUMTEL = Integer.parseInt(numtelTF.getText());
-            String ROLE = (String) roleCOMBOBOX.getValue();
+            String ROLE = roleCOMBOBOX.getValue();
             String PROFESSION = professionTF.getText();
             boolean isValid = true;
             String errorMessage = "";
@@ -205,10 +207,7 @@ public class AdminUserController implements Initializable  {
                 errorMessage += "Mot de passe est requis.\n";
                 isValid = false;
             }
-            if (ROLE == null || ROLE.trim().isEmpty()) {
-                errorMessage += "Rôle est requis.\n";
-                isValid = false;
-            }
+
             if (PROFESSION.trim().isEmpty()) {
                 errorMessage += "Profession est requise.\n";
                 isValid = false;
@@ -275,14 +274,6 @@ public class AdminUserController implements Initializable  {
 
     void refreshUserInterface() {
         load();
-    }
-
-
-
-
-
-    private boolean validateUserData(User user) {
-        return false;
     }
 
     private void showAlert(String title, String message, Alert.AlertType type) {

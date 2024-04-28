@@ -93,26 +93,30 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
     @Override
     public boolean Update(User user) {
+
         System.out.println("Attempting to update user with ID: " + user.getId());  // Debug statement
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
-            String query = "UPDATE user SET nom=?, prenom=?, adresse=?, email=?, num_tel=?, profession=?, password=?, cin=?, role=? WHERE id=?";
+            String query = "UPDATE user SET nom=?, prenom=?, adresse=?, email=?, num_tel=?, profession=?, cin=?, role=? WHERE id=?";
+
             connection = DataBase.getInstance().getConx();
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(query);
+            System.out.println("User Details: " + user.toString());  // Make sure 'User' class has a proper 'toString' method
+
             preparedStatement.setString(1, user.getNom());
             preparedStatement.setString(2, user.getPrenom());
             preparedStatement.setString(3, user.getAdresse());
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setInt(5, user.getNum_tel());
             preparedStatement.setString(6, user.getProfession());
-            preparedStatement.setString(7, user.getPassword());
-            preparedStatement.setInt(8, user.getCin());
-            preparedStatement.setString(9, user.getRoles());
-            preparedStatement.setInt(10, user.getId());
+            preparedStatement.setInt(7, user.getCin());
+            preparedStatement.setString(8, user.getRoles());
+            preparedStatement.setInt(9, user.getId());
+
 
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows > 0) {
@@ -124,10 +128,11 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
             return false;
-    }
+        }
+
+
 
 
 

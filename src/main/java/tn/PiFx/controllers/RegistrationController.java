@@ -84,9 +84,6 @@ public class RegistrationController {
     //Fin Api//
 
 
-
-
-
     @FXML
     void SeConnecterButtonInsc(ActionEvent event) {
 
