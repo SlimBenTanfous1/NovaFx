@@ -78,7 +78,7 @@
                      <children>
                         <HBox prefHeight="83.0" prefWidth="272.0">
                            <children>
-                              <Label fx:id="nomRestau" alignment="TOP_CENTER" prefHeight="54.0" prefWidth="294.0" text="Plan ">
+                              <Label fx:id="nomRestau" alignment="TOP_CENTER" prefHeight="54.0" prefWidth="294.0" text="Devis">
                                  <font>
                                     <Font name="Cambria" size="36.0" />
                                  </font>
@@ -143,7 +143,7 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <Button fx:id="butonAvis" mnemonicParsing="false" onAction="#handleAvisButtonClick" prefHeight="42.0" prefWidth="94.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Donner Avis" textFill="WHITE" />
+                        <Button fx:id="butonAvis" mnemonicParsing="false" onAction="#handleAvisButtonClick" prefHeight="42.0" prefWidth="94.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Devis traite" textFill="WHITE" />
                      </children>
                      <padding>
                         <Insets bottom="30.0" />

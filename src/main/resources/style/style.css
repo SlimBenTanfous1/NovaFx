@@ -1,5 +1,5 @@
 .button{
-    -fx-background-color:#F8C07F;
+    -fx-background-color:#BEF574;
     -fx-background-radius:8px;
     -fx-text-fill:#fff;
     -fx-font-size:14px;
@@ -8,5 +8,5 @@
 }
 
 .button:hover{
-    -fx-background-color:#F34C31;
+    -fx-background-color:#BEF594;
 }

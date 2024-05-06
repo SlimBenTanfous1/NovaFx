@@ -1,5 +1,7 @@
 package edu.esprit.service;
 
+import edu.esprit.entities.AvisRestau;
+
 import java.util.List;
 
 

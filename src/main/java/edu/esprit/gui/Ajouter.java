@@ -3,36 +3,29 @@
         import edu.esprit.entities.Devis;
         import edu.esprit.service.ServiceR;
         import javafx.event.ActionEvent;
-        import javafx.event.EventHandler;
         import javafx.fxml.FXML;
-        import javafx.geometry.Pos;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.TextField;
+        import javafx.fxml.FXMLLoader;
+        import javafx.scene.Parent;
+        import javafx.scene.Scene;
         import javafx.scene.image.Image;
         import javafx.scene.text.Text;
         import javafx.stage.FileChooser;
+        import javafx.stage.Stage;
+        import javafx.scene.control.Button;
 
+        import java.io.IOException;
+
+        import javafx.scene.control.TextField;
         import javafx.scene.image.ImageView;
         import java.io.File;
-        import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.TextField;
-        import javafx.scene.image.Image;
-
-        import javafx.stage.FileChooser;
-        import javafx.util.Duration;
-        import org.controlsfx.control.Notifications;
-        import org.controlsfx.control.action.Action;
-
-
-        import java.io.File;
-        import java.util.UUID;
 
         public class Ajouter {
 
+
             @FXML
             private TextField adresse;
+            @FXML
+            private Button devis;
 
             @FXML
             private TextField email;
@@ -51,7 +44,8 @@
 
             @FXML
             private Text errorAdresse;
-
+            @FXML
+            private Button Dashboard;
             @FXML
             private Text errorEmail;
 
@@ -66,6 +60,9 @@
             private ImageView imageView;
 
             private File selectedImageFile;
+
+// Methode d'ajout Valide mais sans  Envoie de SMS apres la reponse de devis
+
 
 //            @FXML
 //            void ajouterRestaurantAction(ActionEvent event) {
@@ -160,12 +157,7 @@
                     errorEmail.setText("");
                 }
 
-                if (phone.getText().isEmpty() || !phone.getText().matches("^[0-9]{8}$")) {
-                    errorPhone.setText("Phone is required and should be 8 digits long");
-                    isValid = false;
-                } else {
-                    errorPhone.setText("");
-                }
+
 
                 return isValid;
             }
@@ -197,6 +189,51 @@
                 assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'ajouter.fxml'.";
 
         }
+
+
+
+
+
+            @FXML
+            public void Dashboard(ActionEvent event) throws IOException {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficher.fxml"));
+                    Parent root = loader.load();
+
+                    // Créer la scène avec la nouvelle page
+                    Scene scene = new Scene(root);
+
+                    // Obtenir la scène actuelle à partir du bouton cliqué
+                    Stage stage = (Stage) Dashboard.getScene().getWindow();
+
+                    // Remplacer la scène actuelle par la nouvelle scène
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            public void devis(ActionEvent event) throws IOException {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/backavis.fxml"));
+                    Parent root = loader.load();
+
+                    // Créer la scène avec la nouvelle page
+                    Scene scene = new Scene(root);
+
+                    // Obtenir la scène actuelle à partir du bouton cliqué
+                    Stage stage = (Stage) devis.getScene().getWindow();
+
+                    // Remplacer la scène actuelle par la nouvelle scène
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
         }
+
 
 

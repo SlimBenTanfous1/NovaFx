@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c2cbaf4a-f4e8-44fd-bc64-7d4f7b5b7831" name="Changes" comment="Deuxieme comit" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="module-info" />
+        <option value="Interface" />
+        <option value="CSS File" />
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Ahmed_" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="1c20b1fd-b972-45c8-b676-a6edf6f217be" />
+        <option name="url" value="https://github.com/SlimBenTanfous1/NovaFx.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2cm2BueTZQZiTSqsO6GDiFvNP3M" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Main.executor": "Run",
+    "Application.MainFX.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Maven.resQfood1 [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
+    "Maven.resQfood1 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "Maven.resQfood5 [javafx:run].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/HP/Desktop/3eme/Nova_desktop",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dorra\Desktop\resQfood5\src\main\resources\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dorra\Desktop\resQfood5\src\main\resources\images" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="edu.esprit.gui" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Example">
+    <configuration name="Example" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.esprit.gui.Example" />
+      <module name="resQfood1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.esprit.gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="resQfood5 [javafx:run]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="javafx:run" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Maven.resQfood5 [javafx:run]" />
+        <item itemvalue="Application.Example" />
+        <item itemvalue="Application.Example" />
+        <item itemvalue="Maven.resQfood5 [javafx:run]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c2cbaf4a-f4e8-44fd-bc64-7d4f7b5b7831" name="Changes" comment="" />
+      <created>1708702302267</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708702302267</updated>
+      <workItem from="1708702303183" duration="7636000" />
+      <workItem from="1708725927456" duration="83955000" />
+      <workItem from="1709125672862" duration="2691000" />
+      <workItem from="1709128688177" duration="9052000" />
+      <workItem from="1709143554144" duration="36940000" />
+      <workItem from="1709295633786" duration="54119000" />
+      <workItem from="1709663184811" duration="5966000" />
+      <workItem from="1710000382238" duration="1177000" />
+      <workItem from="1710151381200" duration="1515000" />
+      <workItem from="1710713136790" duration="429000" />
+      <workItem from="1710776153030" duration="30000" />
+      <workItem from="1710811405721" duration="269000" />
+      <workItem from="1710980596440" duration="3985000" />
+      <workItem from="1711055227977" duration="8027000" />
+    </task>
+    <task id="LOCAL-00001" summary="commit crud">
+      <created>1714070515226</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714070515226</updated>
+    </task>
+    <task id="LOCAL-00002" summary="commit crud">
+      <created>1714078090618</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714078090618</updated>
+    </task>
+    <task id="LOCAL-00003" summary="commit crud">
+      <created>1714078803217</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714078803217</updated>
+    </task>
+    <task id="LOCAL-00004" summary="commit crud">
+      <created>1714079405579</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714079405579</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit crud">
+      <created>1714080049119</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714080049119</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commit crud">
+      <created>1714080398826</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714080398826</updated>
+    </task>
+    <task id="LOCAL-00007" summary="commit crud">
+      <created>1714083324008</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714083324008</updated>
+    </task>
+    <task id="LOCAL-00008" summary="commit crud">
+      <created>1714731412529</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714731412529</updated>
+    </task>
+    <task id="LOCAL-00009" summary="commit crud">
+      <created>1715024534910</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715024534910</updated>
+    </task>
+    <task id="LOCAL-00010" summary="commit crud">
+      <created>1715024617494</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715024617494</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="commit crud" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit crud" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

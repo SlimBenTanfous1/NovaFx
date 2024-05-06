@@ -58,11 +58,7 @@ public void setData(Devis r, MyListener myListener) {
 
     this.myListener = myListener;
 
-    // Chemin de l'image récupéré de la base de données
 
-    // Création de l'objet Image
-
-    // Définition de l'image dans l'ImageView
 
 }
 

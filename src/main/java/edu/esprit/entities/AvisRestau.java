@@ -2,32 +2,46 @@ package edu.esprit.entities;
 
 import java.util.Objects;
 
-public class AvisRestau {
+public class AvisRestau extends Devis {
     private int idR;
     private int id;
+    private int devis_id_id;
     private int idUser; // Nouvelle colonne ajoutée
 
     private String response;
     private String commentaire;
     private String status;
 
-  /*  public AvisRestau(int idA, int idUser, String nomR, String commentaire) {
-        this.idA =idA;
-        this.idUser = idUser;
-        this.nomR = nomR;
-        this.commentaire = commentaire;
-    }*/
-    public AvisRestau(int id, String response, String status) {
+
+   /* public AvisRestau(int id, String response, String status) {
         this.id = id;
+        this.status = status;
+
+        this.response = response;
+
+    }
+*/
+
+
+
+
+    public AvisRestau(int id, String response, String status,int devis_id_id) {
+        this.id = id;
+        this.devis_id_id=devis_id_id;
         this.response = response;
         this.status = status;
+
     }
-
-
-
     public AvisRestau() {
     }
 
+
+    public  int getDevis_id_id(){
+
+        return devis_id_id;}
+    public void setDevis_id_id(int devis_id_id ) {
+        this.devis_id_id = devis_id_id;
+    }
 
 
     public int getIdR() {
@@ -46,13 +60,7 @@ public class AvisRestau {
         this.id = id;
     }
 
-    public int getIdUser() {
-        return idUser;
-    }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
 
     public String getStatus() {
         return status;
@@ -76,6 +84,7 @@ public class AvisRestau {
                 "id=" + id +
                 ",response='" + response + '\'' +
                 ",status='" + status + '\'' +
+                ",devis_id_id='" + devis_id_id + '\'' +
                 '}';
     }
 
@@ -86,11 +95,12 @@ public class AvisRestau {
         AvisRestau that = (AvisRestau) o;
         return id == that.id &&
                 Objects.equals(response, that.response) &&
-                Objects.equals(status, that.status);
+                Objects.equals(status, that.status)&&
+                Objects.equals(devis_id_id, that.devis_id_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id,response,status);
+        return Objects.hash(id,response,status,devis_id_id);
     }
 }

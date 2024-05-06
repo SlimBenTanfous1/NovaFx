@@ -32,7 +32,13 @@ public class Afficher implements Initializable {
 
     @FXML
     private VBox chosenRestau;
+    @FXML
+    private TextField search;
 
+    // Existing Java declarations...
+
+    @FXML
+    private ComboBox<String> roleFilter;
     @FXML
     private GridPane grid;
 
@@ -67,22 +73,6 @@ public class Afficher implements Initializable {
     @FXML
     private Image image;
 
-   /* private void setChosenRestau(Restaurant r) {
-        nomRestau.setText(r.getNomR());
-
-        InputStream imageStream = getClass().getResourceAsStream(r.getImageR());
-        if (imageStream != null) {
-            image = new Image(imageStream);
-            imageRestau.setImage(image);
-        } else {
-            System.out.println("Image not found: " + r.getImageR());
-            // You can set a default image here if you wish
-            // imageRestau.setImage(defaultImage);
-        }
-        adresse.setText(r.getAdresseR());
-        email.setText(r.getEmailR());
-        phone.setText(String.valueOf(r.getPhoneR()));
-    }*/
 
     @FXML
     private void setChosenRestau(Devis r) {
@@ -126,27 +116,25 @@ public class Afficher implements Initializable {
         }
     }
 
-    @FXML
-    private TextField search;
 
-    // Existing Java declarations...
-
-    @FXML
-    private ComboBox<String> roleFilter;
     @FXML
     private void handleSearch() {
         filterDisplayedRestaurants();
     }
 
+
     @FXML
     private void filterDisplayedRestaurants() {
         String searchText = search.getText().toLowerCase();
         List<Devis> filteredRestaurants = restaurants.stream()
-                .filter(restaurant -> restaurant.getName().toLowerCase().contains(searchText))
+                .filter(devis -> devis.getName().toLowerCase().contains(searchText)
+                        || devis.getEmail().toLowerCase().contains(searchText)
+                        || devis.getPrenom().toLowerCase().contains(searchText))
                 .collect(Collectors.toList());
 
         loadGridData(filteredRestaurants);
     }
+
 
     private void loadGridData(List<Devis> filteredRestaurants) {
         grid.getChildren().clear(); // Clear existing content from the grid

@@ -1,6 +1,22 @@
 package edu.esprit.gui;
-
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+import java.io.File;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.awt.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -33,6 +49,8 @@ import java.io.IOException;
 public class Back implements Initializable {
     @FXML
     private TableView<Devis> tab;
+    @FXML
+    private Button avis;
 
     @FXML
     private TableColumn<Devis, String> prenom;
@@ -56,7 +74,7 @@ public class Back implements Initializable {
     Button modif, supprimer, pdf;
 
     @FXML
-    private Button avis;
+    //private Button avis;
 
     int selectedId;
 
@@ -76,19 +94,45 @@ public class Back implements Initializable {
             document.open();
 
             List<Devis> restaurants = s.getAll();
-            document.add(new Paragraph("Devis Information\n\n"));
+
+            // Créer le tableau
+            PdfPTable table = new PdfPTable(3); // 3 colonnes pour Nom, Prenom, Email
+            table.setWidthPercentage(100);
+
+            // Ajouter l'en-tête du tableau
+            PdfPCell headerCell;
+            headerCell = new PdfPCell(new Phrase("Nom"));
+            headerCell.setBackgroundColor(BaseColor.GREEN); // Couleur verte pour l'en-tête
+            table.addCell(headerCell);
+            headerCell = new PdfPCell(new Phrase("Prenom"));
+            headerCell.setBackgroundColor(BaseColor.GREEN); // Couleur verte pour l'en-tête
+            table.addCell(headerCell);
+            headerCell = new PdfPCell(new Phrase("Email"));
+            headerCell.setBackgroundColor(BaseColor.GREEN); // Couleur verte pour l'en-tête
+            table.addCell(headerCell);
+
+            // Ajouter les informations des Devis dans le tableau
             for (Devis restaurant : restaurants) {
-                String restaurantInfo = String.format("Name: %s\nPrenom: %s\nEmail: \n\n",
-                        restaurant.getName(), restaurant.getPrenom(), restaurant.getEmail());
-                document.add(new Paragraph(restaurantInfo));
+                PdfPCell cell;
+                cell = new PdfPCell(new Phrase(restaurant.getName()));
+                cell.setBackgroundColor(BaseColor.WHITE); // Couleur blanche pour le contenu
+                table.addCell(cell);
+                cell = new PdfPCell(new Phrase(restaurant.getPrenom()));
+                cell.setBackgroundColor(BaseColor.WHITE); // Couleur blanche pour le contenu
+                table.addCell(cell);
+                cell = new PdfPCell(new Phrase(restaurant.getEmail()));
+                cell.setBackgroundColor(BaseColor.WHITE); // Couleur blanche pour le contenu
+                table.addCell(cell);
             }
+
+            // Ajouter le tableau au document
+            document.add(table);
 
             document.close();
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void AvisButton() {
@@ -193,4 +237,28 @@ public class Back implements Initializable {
         TFadresse.clear();
         TFimage.clear();
     }
+
+    public void Back(ActionEvent event)
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficher.fxml"));
+            Parent root = loader.load();
+
+            // Créer la scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) avis.getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

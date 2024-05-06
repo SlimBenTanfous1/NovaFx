@@ -14,10 +14,10 @@
         <TableView fx:id="tab" layoutX="86.0" layoutY="24.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="209.0" prefWidth="666.0" styleClass="shadow" stylesheets="@style/styleafficher.css">
             <columns>
                 <TableColumn fx:id="nomR" prefWidth="129.60004234313965" text="Nom" />
-<TableColumn fx:id="prenom" prefWidth="125.60003662109375" text="prenom" />
-<TableColumn fx:id="emailR" prefWidth="138.39996337890625" text="email" />
-<TableColumn fx:id="phone" prefWidth="141.60000610351562" text="phone" />
-<TableColumn fx:id="imageR" prefWidth="128.79998779296875" text="image" />
+                <TableColumn fx:id="emailR" prefWidth="138.39996337890625" text="email" />
+                <TableColumn fx:id="prenom" prefWidth="125.60003662109375" text="Question?" />
+
+<TableColumn fx:id="phone" prefWidth="141.60000610351562" text="ID" />
         </columns>
 <cursor>
 <Cursor fx:constant="S_RESIZE" />
@@ -39,9 +39,9 @@
             <String fx:value="shadow" />
          </styleClass></TextField>
 <Text layoutX="64.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nom" />
-<Text layoutX="53.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adresse" wrappingWidth="47.27813720703125" />
+<Text layoutX="53.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question?" wrappingWidth="47.27813720703125" />
 <Text layoutX="63.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email" />
-<Text layoutX="61.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone" />
+<Text layoutX="61.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
 <TextField fx:id="TFimage" layoutX="112.0" layoutY="488.0" stylesheets="@style/styleafficher.css">
          <styleClass>
             <String fx:value="shadow" />
@@ -56,6 +56,6 @@
             <String fx:value="shadow" />
          </styleClass></TextField>
       <Button fx:id="pdf" layoutX="563.0" layoutY="492.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="47.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="pdf" textFill="WHITE" />
-      <Button fx:id="avis" layoutX="634.0" layoutY="491.0" mnemonicParsing="false" onAction="#AvisButton" prefHeight="43.0" prefWidth="96.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="consulter avis" textFill="#fffbfb" />
+      <Button fx:id="avis" layoutX="634.0" layoutY="491.0" mnemonicParsing="false" onAction="#AvisButton" prefHeight="43.0" prefWidth="96.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Liste des devis" textFill="#fffbfb" />
         </children>
         </AnchorPane>

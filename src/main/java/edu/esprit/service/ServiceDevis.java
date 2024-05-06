@@ -6,6 +6,10 @@ import edu.esprit.utils.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import edu.esprit.entities.Devis;
+
 
 public class ServiceDevis implements IServiceDevis {
 
@@ -17,12 +21,16 @@ public class ServiceDevis implements IServiceDevis {
     public void ajouter(Object o) {
         if (o instanceof AvisRestau) {
             AvisRestau avis = (AvisRestau) o;
-            String req = "INSERT INTO response_devis(id,status,response) VALUES (?, ?,?)";
+            String req = "INSERT INTO response_devis(devis_id_id,status,response) VALUES (?,?,?)";
             try (PreparedStatement ps = cnx.prepareStatement(req, Statement.RETURN_GENERATED_KEYS)) {
+                //   String querry = "INSERT INTO response_devis(id,devis_id_id,status,response) VALUES (?, ?,?,?)";
                 //ps.setInt(1, STATIC_USER_ID);
-                 ps.setInt(1, avis.getIdR());
+                //ps.setInt(1, avis.getIdR());
+                ps.setInt(1, avis.getDevis_id_id());
                 ps.setString(2, avis.getStatus());
                 ps.setString(3, avis.getResponse());
+
+
                 ps.executeUpdate();
 
                 // Récupérer la clé primaire générée si nécessaire
@@ -43,25 +51,34 @@ public class ServiceDevis implements IServiceDevis {
     @Override
     public void modifier(Object o) {
         if (o instanceof AvisRestau) {
-            AvisRestau avis = (AvisRestau) o;
-            String req = "UPDATE response_devis SET  Response  = ?,status = ? WHERE id = ? ";
-            //AND idR = ?
-            try (PreparedStatement ps = cnx.prepareStatement(req)) {
+            AvisRestau user = (AvisRestau) o;
+            // String req = "UPDATE response_devis SET devis_id_id = ?, response = ?, status = ? WHERE id = ?";
+            System.out.println("Attempting to update user with ID: " + user.getId());  // Debug statement
 
-                ps.setInt(1, avis.getId());
-                ps.setString(2, avis.getStatus());
-                ps.setString(3, avis.getResponse());
+            Connection connection = null;
+            PreparedStatement preparedStatement = null;
 
-             //   ps.setInt(3, avis.getIdR());
+            try {
+                String query = "UPDATE response_devis SET devis_id_id = ?, response = ?, status = ? WHERE id = ?";
 
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected > 0) {
-                    System.out.println("Avis with ID " + avis.getId() + " updated successfully!");
+                connection = DataSource.getInstance().getCnx();
+                connection.setAutoCommit(false);
+                preparedStatement = connection.prepareStatement(query);
+                //  System.out.println("User Details: " + user.toString());  // Make sure 'User' class has a proper 'toString' method
+                preparedStatement.setInt(1, user.getDevis_id_id());
+                preparedStatement.setString(2, user.getResponse());
+                preparedStatement.setString(3, user.getStatus());
+                preparedStatement.setInt(4, user.getId());
+
+
+                int affectedRows = preparedStatement.executeUpdate();
+                if (affectedRows > 0) {
+                    connection.commit();
+
                 } else {
-                    System.out.println("No record found with ID " + avis.getId() + ". Update failed.");
+                    System.out.println("Update failed - No rows affected. Check if the ID exists: " + user.getId());
                 }
             } catch (SQLException e) {
-                // Gérer ou journaliser l'exception
                 e.printStackTrace();
             }
         }
@@ -70,7 +87,9 @@ public class ServiceDevis implements IServiceDevis {
 
     @Override
     public void supprimer(int id) {
-        String req = "DELETE FROM response_devis WHERE id = ?";
+
+        // Suite a la derniere suivie le 03/05/2024 le prof a demande d'ajouter une alerte de supprition .
+        /*     String req = "DELETE FROM response_devis WHERE id = ?";
         try (PreparedStatement ps = cnx.prepareStatement(req)) {
             ps.setInt(1, id);
             int rowsAffected = ps.executeUpdate();
@@ -85,29 +104,52 @@ public class ServiceDevis implements IServiceDevis {
             e.printStackTrace();
         }
 
+   }*///// Ajout alerte
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText("Êtes-vous sûr de vouloir supprimer ?");
+        alert.setContentText("Cette action est irréversible.");
+
+        // Personnalisation des boutons de la boîte de dialogue
+        ButtonType buttonTypeYes = new ButtonType("Oui");
+        ButtonType buttonTypeNo = new ButtonType("Non");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        // Affichage de la boîte de dialogue et attente de la réponse de l'utilisateur
+        alert.showAndWait().ifPresent(response -> {
+            if (response == buttonTypeYes) {
+                String req = "DELETE FROM response_devis WHERE id = ?";
+                try (PreparedStatement ps = cnx.prepareStatement(req)) {
+                    ps.setInt(1, id);
+                    int rowsAffected = ps.executeUpdate();
+                    if (rowsAffected > 0) {
+
+                        System.out.println("restaurant with ID " + id + " deleted successfully!");
+                    } else {
+                        System.out.println("No record found with ID " + id + ". Deletion failed.");
+                    }
+                } catch (SQLException e) {
+                    // Handle or log the exception
+                    e.printStackTrace();
+                }
+                showAlert(Alert.AlertType.INFORMATION, "Suppression réussie", "L'élément a été supprimé avec succès.");
+            }
+        });
+
     }
 
-   /* @Override
-    public  List<AvisRestau> getAll() {
-        List<AvisRestau> avisList = new ArrayList<>();
-        String req = "SELECT * FROM avisrestau";
-        try (Statement st = cnx.createStatement();
-             ResultSet res = st.executeQuery(req)) {
-            while (res.next()) {
-                int idR = res.getInt("idR");
-                int idA = res.getInt("idA");
 
-                String commentaire = res.getString("commentaire");
+    // Méthode pour afficher une boîte de dialogue d'alerte
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 
-                AvisRestau avis = new AvisRestau(idR, idA, commentaire);
-                avisList.add(avis);
-            }
-        } catch (SQLException e) {
-            // Handle or log the exception
-            e.printStackTrace();
-        }
-        return avisList;
-    }*/
+
 
     @Override
     public Object getOneById(int id) {
@@ -117,15 +159,16 @@ public class ServiceDevis implements IServiceDevis {
 
     public List<AvisRestau> getAll() {
         List<AvisRestau> avisList = new ArrayList<>();
-        String req = "SELECT id,response,status FROM response_devis";
+        String req = "SELECT id,devis_id_id,response,status FROM response_devis";
         try (Statement st = cnx.createStatement();
              ResultSet res = st.executeQuery(req)) {
             while (res.next()) {
                 int id = res.getInt("id");
                 String response = res.getString("response");
-                String status = res.getString("status");
 
-                AvisRestau avis = new AvisRestau(id,response,status);
+                String status = res.getString("status");
+                int devis_id_id = res.getInt("devis_id_id");
+                AvisRestau avis = new AvisRestau(id, response, status, devis_id_id);
                 avisList.add(avis);
             }
         } catch (SQLException e) {
@@ -134,9 +177,6 @@ public class ServiceDevis implements IServiceDevis {
         }
         return avisList;
     }
-
-
-
 
 
 }
