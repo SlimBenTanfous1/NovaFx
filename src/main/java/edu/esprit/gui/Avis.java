@@ -28,6 +28,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import org.jetbrains.annotations.NotNull;
 
 
 public class Avis implements Initializable {
@@ -171,7 +172,24 @@ public class Avis implements Initializable {
         sasie1.clear();
     }
 */
+    @FXML
+  public int[] calculerStatistiques(@NotNull List<AvisRestau> listeDevis) {
+      int traiteCount = 0;
+      int nonTraiteCount = 0;
+
+      for (AvisRestau devis : listeDevis) {
+          if (devis.getStatus().equals("101")) {
+              traiteCount++;
+          } else if (devis.getStatus().equals("100")) {
+              nonTraiteCount++;
+          }
+      }
+
+      // Retourner les résultats sous forme de tableau
+      return new int[] { traiteCount, nonTraiteCount };
+  }
     // ajout de reponse Avec  envoie de SMS using Twilio (Crud d'ajout )
+
 
     @FXML
     void ajouterAvisAction(ActionEvent event) {
@@ -198,7 +216,7 @@ public class Avis implements Initializable {
 
             // Appeler la méthode pour envoyer le SMS
             Example example = new Example();
-            example.send_sms(message);
+          //  example.send_sms(message);
         }
 
         // Effacer les champs de texte
