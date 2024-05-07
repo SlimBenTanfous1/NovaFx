@@ -2,19 +2,15 @@ package edu.esprit.gui;
 
 
 
-import edu.esprit.entities.Devis;
 import edu.esprit.service.MyListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.File;
-import java.io.InputStream;
 import javafx.scene.input.MouseEvent;
 
 
-public class Restau {
+public class Devis {
 
 
 
@@ -23,7 +19,7 @@ public class Restau {
 
     @FXML
     private Label nom;
-    private Devis r ;
+    private edu.esprit.entities.Devis r ;
     private MyListener myListener ;
     @FXML
     private void click(MouseEvent mouseEvent) {
@@ -52,7 +48,7 @@ public class Restau {
 
 
 
-public void setData(Devis r, MyListener myListener) {
+public void setData(edu.esprit.entities.Devis r, MyListener myListener) {
     this.r = r;
     nom.setText(r.getName());
 

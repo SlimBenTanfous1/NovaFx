@@ -35,7 +35,7 @@
                                  <Image url="@images/analyse.png" />
                               </image>
                            </ImageView>
-                           <Button fx:id="Dashboard" accessibleRole="DIALOG" mnemonicParsing="false" onAction="#Dashboard" styleClass="shadow" stylesheets="@style/styleafficher.css" text="Dashboard" />
+                           <Button fx:id="Dashboard" accessibleRole="DIALOG" mnemonicParsing="false" onAction="#Dashboard" styleClass="shadow" stylesheets="@style/styleafficher.css" text="Dashboard" HBox.hgrow="ALWAYS" />
                         </children>
                      </HBox>
                      <HBox layoutX="30.0" layoutY="392.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="shadow" stylesheets="@style/style.css">

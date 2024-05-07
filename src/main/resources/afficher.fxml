@@ -202,7 +202,7 @@
                      <children>
                         <VBox prefHeight="82.0" prefWidth="206.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="151.0" text="Gestion En Ligne">
+                              <Label prefHeight="20.0" prefWidth="151.0" text="Nova Insurrance">
                                  <VBox.margin>
                                     <Insets left="5.0" top="30.0" />
                                  </VBox.margin>
@@ -230,7 +230,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Filtrer Par Avis" textFill="#fcf6f6">
+                  <Button fx:id="Stat" mnemonicParsing="false" onAction="#Voir_stat" prefHeight="40.0" prefWidth="105.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Voir Statistique " textFill="#fcf6f6">
                      <HBox.margin>
                         <Insets left="100.0" top="30.0" />
                      </HBox.margin>

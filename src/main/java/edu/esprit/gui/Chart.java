@@ -60,16 +60,15 @@ public class Chart implements Initializable {
     }
 
     private int[] calculerStatistiques(List<AvisRestau> listeDevis) {
-        // Initialiser les compteurs pour les devis traités et non traités
         int traiteCount = 0;
         int nonTraiteCount = 0;
 
-        // Parcourir la liste de devis
+
         for (AvisRestau devis : listeDevis) {
             // Vérifier le statut de chaque devis et incrémenter les compteurs en conséquence
-            if (devis.getStatus().equalsIgnoreCase("101")) {
+            if (devis.getStatus().equalsIgnoreCase("traite")) {
                 traiteCount++;
-            } else if (devis.getStatus().equalsIgnoreCase("100")) {
+            } else if (devis.getStatus().equalsIgnoreCase("non traite")) {
                 nonTraiteCount++;
             }
         }

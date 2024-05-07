@@ -1,7 +1,7 @@
 .button{
-    -fx-background-color:#BEF574;
+    -fx-background-color: transparent;
     -fx-background-radius:8px;
-    -fx-text-fill:#fff;
+    -fx-text-fill: black;
     -fx-font-size:14px;
     -fx-font-family:"Arial";
     -fx-cursor:hand;

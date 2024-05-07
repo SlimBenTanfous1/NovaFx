@@ -28,9 +28,9 @@
 .right-bar{
     -fx-background-color: #85ba57;
 }
-
 .shadow {
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10.0, 0.0, 0.0, 10.0);
+    -fx-effect: drop shadow(three-pass-box, rgba(0, 0, 0, 0.1), 10.0, 0.0, 0.0, 10.0);
+
 }
 
 .show-box{

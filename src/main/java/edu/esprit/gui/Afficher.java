@@ -1,19 +1,16 @@
 package edu.esprit.gui;
 
-import edu.esprit.entities.Devis;
 import edu.esprit.service.MyListener;
 import edu.esprit.service.ServiceR;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,8 +19,6 @@ import java.util.stream.Collectors;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image ;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -31,7 +26,7 @@ import javafx.stage.Stage;
 public class Afficher implements Initializable {
 
     @FXML
-    private VBox chosenRestau;
+    private Button Stat;
     @FXML
     private TextField search;
 
@@ -65,7 +60,7 @@ public class Afficher implements Initializable {
 
  
 
-    private List<Devis> restaurants;
+    private List<edu.esprit.entities.Devis> restaurants;
     private MyListener myListener;
 
     private ServiceR serviceR = new ServiceR();
@@ -73,9 +68,29 @@ public class Afficher implements Initializable {
     @FXML
     private Image image;
 
+    public void Voir_stat(ActionEvent event)
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/chart.fxml"));
+            Parent root = loader.load();
 
+            // Créer la scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) Stat.getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
-    private void setChosenRestau(Devis r) {
+    private void setChosenRestau(edu.esprit.entities.Devis r) {
         nomRestau.setText(r.getName());
 
         if (r.getImageR() != null && !r.getImageR().isEmpty()) {
@@ -126,7 +141,7 @@ public class Afficher implements Initializable {
     @FXML
     private void filterDisplayedRestaurants() {
         String searchText = search.getText().toLowerCase();
-        List<Devis> filteredRestaurants = restaurants.stream()
+        List<edu.esprit.entities.Devis> filteredRestaurants = restaurants.stream()
                 .filter(devis -> devis.getName().toLowerCase().contains(searchText)
                         || devis.getEmail().toLowerCase().contains(searchText)
                         || devis.getPrenom().toLowerCase().contains(searchText))
@@ -136,7 +151,7 @@ public class Afficher implements Initializable {
     }
 
 
-    private void loadGridData(List<Devis> filteredRestaurants) {
+    private void loadGridData(List<edu.esprit.entities.Devis> filteredRestaurants) {
         grid.getChildren().clear(); // Clear existing content from the grid
 
         int column = 0;
@@ -149,7 +164,7 @@ public class Afficher implements Initializable {
 
                 AnchorPane anchorPane = fxmlLoader.load();
 
-                Restau itemController = fxmlLoader.getController();
+                Devis itemController = fxmlLoader.getController();
                 itemController.setData(filteredRestaurants.get(i), myListener);
 
                 if (column == 2) {
@@ -177,7 +192,7 @@ public class Afficher implements Initializable {
             myListener = r -> setChosenRestau(r);
         }
         myListener = new MyListener() {
-            public void onClickListener(Devis r) {
+            public void onClickListener(edu.esprit.entities.Devis r) {
                 setChosenRestau(r);
             }
         };
@@ -202,7 +217,7 @@ public class Afficher implements Initializable {
 
                 AnchorPane anchorPane = fxmlLoader.load();
 
-                Restau itemController = fxmlLoader.getController();
+                Devis itemController = fxmlLoader.getController();
                 itemController.setData(restaurants.get(i), myListener);
 
                 if (column == 2) {
