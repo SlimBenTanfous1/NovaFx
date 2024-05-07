@@ -4,18 +4,71 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2cbaf4a-f4e8-44fd-bc64-7d4f7b5b7831" name="Changes" comment="commit statistique">
+    <list default="true" id="c2cbaf4a-f4e8-44fd-bc64-7d4f7b5b7831" name="Changes" comment="commit css">
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Assurance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Contrat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/AfficheFront.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/AfficherBack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/AfficherBackcontrat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/AjouterAssurance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/AjouterContrat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/Example.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/ModifierAssurance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/ModifierContrat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/service/Assurance_s.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/service/Contrat_s.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/service/Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/utils/DataBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/AfficherFront.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/AjouterContrat.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Ajouterassurance.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Card.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/png-transparent-recaptcha-hd-logo-thumbnail.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Afficher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Afficher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Avis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Avis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Chart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Chart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Restau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Devis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/MainFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/MainFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid14280.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid14280.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid17232.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid17232.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid17612.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid17612.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid21260.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid21260.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid5588.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid5588.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid760.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid760.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid9720.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid9720.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid9968.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid9968.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/AvisRestau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/AvisRestau.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Devis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Devis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Afficher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/Afficher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Ajouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/Ajouter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Avis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/Avis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Back.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/Back.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/BackAvis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/BackAvis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Chart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/Chart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/DashBord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/DashBord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Devis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/Devis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Example.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/gui/UnAvis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/gui/UnAvis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/IServiceDevis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/service/IServiceDevis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/MyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/service/MyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServiceDevis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/service/ServiceDevis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServiceR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/service/ServiceR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/tests/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/MainFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/tests/MainFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/utils/DataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/utils/DataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Chart.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Chart.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Example.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Example.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Test.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/afficher.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/afficher.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ajouter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ajouter.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/avis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/avis.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/back.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/back.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/backavis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/backavis.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/chat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/chat.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dashbord.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dashbord.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/restau.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/restau.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/style/styleafficher.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style/styleafficher.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/unAvis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/unAvis.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,10 +79,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="module-info" />
-        <option value="Interface" />
         <option value="CSS File" />
-        <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -72,37 +125,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainFX.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Maven.resQfood1 [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.resQfood1 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.resQfood5 [javafx:run].executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Documents/GitHub/NovaFx&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Main.executor": "Run",
+    "Application.MainFX.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Maven.resQfood1 [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
+    "Maven.resQfood1 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "Maven.resQfood5 [javafx:run].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/HP/Documents/GitHub/NovaFx/src/main/resources",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\Documents\GitHub\NovaFx\src\main\resources" />
       <recent name="C:\Users\Dorra\Desktop\resQfood5\src\main\resources\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -153,8 +207,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Maven.resQfood5 [javafx:run]" />
         <item itemvalue="Application.Example" />
+        <item itemvalue="Maven.resQfood5 [javafx:run]" />
         <item itemvalue="Application.Example" />
         <item itemvalue="Maven.resQfood5 [javafx:run]" />
       </list>
@@ -267,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715033089442</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="commit css">
+      <created>1715069051073</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1715069051073</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,7 +349,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="commit crud" />
     <MESSAGE value="commit statistique" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit statistique" />
+    <MESSAGE value="commit css" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit css" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
